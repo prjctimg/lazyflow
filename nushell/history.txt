@@ -1,0 +1,720 @@
+ls
+top
+starship init nu
+$nu.config-path
+vi $nu.config-path
+exit
+$SHELL
+$env.SHELL
+nvim
+ls
+sudo apt installlazygit
+sudo apt install lazygit
+du ./
+man sh
+sudo apt install xclip
+bash
+$env.SHELL
+xx
+man ghostty
+git
+starship init nu
+nvim $nu.config-path
+nvc
+exit
+nu
+nvc
+fish
+exit
+nu
+exit
+nvim $nu.config-path
+exit
+nvim $nu.config-path
+exit
+which $env.SHELL
+chsh -s nu
+chsh -s which nu
+bash
+exit
+$env.SHELL
+$env.SHELL=nu
+nvim ~/.bashrc
+exit
+$env.SHELL
+ls
+lsd
+ls
+navi
+spf
+cd
+cd workspace/
+bytes 
+man --help
+^clear 
+^cppw 
+^cppw -h
+sudo vi /etc/gimp/
+nvim  /etc/gimp/
+du  /etc/gimp/
+du  /etc/pam.conf
+nvim  /etc/pam.conf
+$env.SHELL
+exit
+bash
+$env.SHELL
+exit
+$env.SHELL
+ls
+cd workspace/
+clear
+man nu
+tldr nu
+nu --commands
+nu --commands "echo 'nu is executed'"
+clear
+vi
+nvim ~/.config/ghostty/config
+exit
+rc
+cd sources/bubbletea/examples/
+vi
+clear 
+go
+nvim
+exit
+nvim 
+exit
+typist
+nvim $nu.config-path
+exit
+g
+go
+nvim $nu.config-path
+exit
+nvim $nu.config-path
+source  $nu.config-path
+nvim $nu.config-path
+exit
+clear
+nvim $nu.config-path
+config nu
+exit#
+exexit
+exit
+config nu --doc | nu-highlight | less -R
+exit
+go
+/usr/bin/go/bin/go
+rustc
+nvim $nu.config-path
+exit
+go 
+spf
+yazi
+spf
+yazi
+whereis yazi
+rm (whereis yazi)
+rm $(whereis yazi)
+rm whereis yazi
+whereis yazi
+whereis yazi | rm
+rm /home/prjctimg/.cargo/bin/yazi
+yazi
+navi
+zig
+zig14
+nvim $nu.config-path
+source  $nu.config-path
+zig
+nvim $nu.config-path
+zig
+nvim
+nvim $nu.config-path
+cd workspace/
+cd blog/
+nvim ~/.config/
+source  $nu.config-path
+exit
+g
+ga 
+cd workspace/
+lsd
+ls
+g clone --depth=1 --no-single-branch --recurse-submodules https://github.com/prjctimg/prjctimg
+cd blog/
+git push
+gh repo create
+cd -
+gh repo clone prjctimg/huetiful -- --depth=1
+ls
+ls huetiful/
+navi
+exit
+cd huetiful/
+bun 
+yarn
+corepack enable
+node
+fnm
+npm
+deno
+fish
+ls
+cd docs/
+ls
+yarn start
+fish
+exit
+nvim
+exit
+clear
+g
+nvim ~/.config/ghostty/config
+source  .config/ghostty/config
+ghostty 
+nvim ~/.config/ghostty/config
+exit
+nvim ~/.config/ghostty/config
+exit
+ghostty 
+clear
+ghostty +list-themes
+ghostty --help
+cd workspace/lzf/
+nvim $nu.config-path
+source $nu.config-path
+vimtutor 
+ls
+exit
+clear
+nvim 
+cd -
+cd workspace/algorithms/Zig/
+nv
+exit
+nvim 
+nvim ~/.config/ghostty/config
+exit 
+clear
+nvim ~/.config/nvim/
+# /etc/apt/sources.list.d/fury.list<\n>deb [trusted=yes] https://apt.fury.io/rsteube/ /<\n>
+bash
+nvim ~/.config/nvim/
+carapace 
+carapace nushell
+## ~/.config/nushell/env.nu<\n>$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional<\n>mkdir ~/.cache/carapace<\n>carapace _carapace nushell | save --force ~/.cache/carapace/init.nu<\n><\n>#~/.config/nushell/config.nu<\n>source ~/.cache/carapace/init.nu
+eixt
+exit
+mkdir ~/.cache/carapace
+touch  ~/.cache/carapace/init.nu
+nvim $nu.config-path
+exit
+carapace nushell
+carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
+source ~/.cache/carapace/init.nu
+exit
+carapace 
+carapace git
+carapace git nushell
+carapace --help
+carapace --list
+carapace git
+nvim $nu.config-path
+exit
+gh api advisories 
+cleqar
+clear 
+carapace acpi bash 
+carapace acpi nushell 
+zig zen 
+clear
+cd sources/
+ls
+cd ghostty/
+nvim 
+nvim
+clear
+whereis lsd
+rm -rf  /home/prjctimg/.cargo/bin/lsd
+lsd
+du 
+cd -
+du
+rm -rf ghostty/
+sudo rm -rf ghostty/
+du
+sudo rm -rf neovim/ superfile/ 
+cd ..
+du
+ls  /home/prjctimg/.rustup
+cd  /home/prjctimg/.rustup
+du
+cd 
+cd ..
+ls
+du  prjctimg/.local/*
+ls  prjctimg/.local/
+du  prjctimg/.local/
+du  prjctimg/.local/share/Trash/
+du  prjctimg/.local/share/*
+du  prjctimg/.local/share/nvim/lazy/
+exit
+node
+nvim $nu.config-path
+exit
+node
+fnm
+fnm list
+whereis node
+fish
+nvim $nu.config-path
+exiy
+exit
+node
+fnm help
+fnm 
+nvim $nu.config-path
+exit
+fnm
+fnm completions
+fnm completions nu
+fnm completions nushell
+fnm completions 
+fnm completions --help
+workspace/
+cleat
+clear
+huetiful/
+ls
+www/
+ls
+ls docs/
+..
+touch typedoc.ts
+nvim
+..
+mv www/docs/guides/ docs/src/content/docs/guides -f
+mv www/static/img/logo.svg docs/public/favicon.svg -f
+rm www/ -r
+ls
+nvim
+exit
+tldr source
+clear
+fish 
+clear
+workspace/lzf/
+clear
+nvim
+uptime
+man uptime
+uptime -s
+uptime -sp
+uptime -p
+nvim
+exit
+nvim $nu.config-path
+exit
+exec
+exit
+ls
+rm -r carapace-bin_1.3.0_linux_arm64.deb
+editt
+const e=4
+const
+34=5
+de=4
+exit
+nu -n
+clear
+nvim
+exit
+nvim $nu.config-path
+exit
+nvim $nu.config-path
+$env.SHELL
+nvim $nu.config-path
+exit
+git check-attr 
+nvim
+glyphs
+exit
+nvim
+workspace/lzf/
+nvim
+nvim nvim ~/.config/ghostty/config
+nvim  ~/.config/ghostty/config
+exit
+workspace/lzf/
+go get github.com/alecthomas/chroma 
+go mod tidy
+cat go.mod
+go mod tidy
+cat go.mod
+go get github.com/alecthomas/chroma  -u
+go get -u  github.com/alecthomas/chroma 
+nvim
+sudo apt upgrade -y
+$ go get google.golang.org/api/tasks/v1<\n>$ go get google.golang.org/api/moderator/v1 go get google.golang.org/api/urlshortener/v1
+go get -u  google.golang.org/api/tasks/v1
+go get google.golang.org/api/keep/v1
+go get -u google.golang.org/api/keep/v1
+go mod tidy
+nvim
+exit
+exit
+nvim $nu.config-path
+exit
+nvim $nu.config-path
+exit
+nvim $nu.config-path
+exit
+nvim $nu.config-path
+exit
+ls
+go/bin/cobra-cli
+nvim $nu.config-path
+exit
+nvim $nu.config-path
+exit
+nvim $nu.config-path
+exit
+cd workspace/lzf/
+vi
+vim
+nano
+nvim
+uptime -p
+exit
+rm -rf /usr/bin/zig-linux-aarch64-0.14.0/
+sudo rm -rf /usr/bin/zig-linux-aarch64-0.14.0
+du /var/*
+du /var/log/alternatives.log
+sudo rm -fr /var/log/*
+du /var/*
+du 
+du ~/.local/*
+kitty
+fish
+exit
+rm -fr  ~/.local/kitty.app/
+du ~/.local/*
+du ~/.local/share/
+du ~/.local/share/*
+nvim  ~/.local/share/fnm/
+sudo mv  ~/.local/share/fnm/node-versions/v22.14.0/installation/ /usr/bin/aarch64-linux-gnu-node-v22.14.0/
+node
+nvim $nu.config-path
+exit
+node
+rm -rf  ~/.local/share/fnm/
+du ~/.local/share/*
+du ~/.rustup/
+du ~/.rustup/*
+du ~/.rustup/toolchains/
+du ~/.rustup/toolchains/*
+du ~/.rustup/toolchains/stable-aarch64-unknown-linux-gnu/bin/*
+du ~/.rustup/toolchains/stable-aarch64-unknown-linux-gnu/*
+du ~/.rustup/toolchains/stable-aarch64-unknown-linux-gnu/share/
+du ~/.rustup/toolchains/stable-aarch64-unknown-linux-gnu/share/*
+du ~/.rustup/toolchains/stable-aarch64-unknown-linux-gnu/share/doc/cargo/
+du ~/.rustup/toolchains/stable-aarch64-unknown-linux-gnu/share/doc/*
+du ~/.rustup/toolchains/stable-aarch64-unknown-linux-gnu/share/doc/rust/html/
+rustdoc
+sudo apt remove clojure 
+sudo apt autoremove
+exit
+nvim $nu.config-path
+nvim ~/.config/ghostty/config
+git count-objects
+exit
+nvim $nu.config-path 
+exit
+nvim $nu.config-path 
+nvim ~/.config/starship.toml 
+nvim ~/.config/nvim/
+nvim
+clear
+exit
+clear
+nvim
+nvim ~/.config/nvim/
+sources/
+ls
+nvim bubbletea/
+cd -
+man sudo
+visudo
+sudo visudo
+man visudo
+nvim $nu.config-path 
+man visudo
+clear
+fish
+workspace/lzf/
+nvim 
+exit
+nvim /usr/local/share/nvim/runtime/
+sfp
+fish
+spf
+..
+ls
+cd -
+ls -a
+.config/
+ls
+..
+nvim /usr/local/share/applications/nvim.desktop
+sudo nvim /usr/local/share/applications/nvim.desktop
+tldr ghostty
+sudo nvim /usr/local/share/applications/nvim.desktop
+exit
+sudo nvim /usr/local/share/applications/nvim.desktop
+sudo nvim /usr/local/share/applications/obsidian.desktop 
+sudo nvim /usr/local/share/applications/nvim.desktop
+whereis ghostty
+sudo rm -rf /usr/ghostty 
+du /usr/bin/ghostty
+sudo apt remove openjdk-17-jdk openjdk-17-jdk-headless 
+sudo apt autoremove
+clear
+du /var/*
+du /var/cache/*
+du /var/cache/apt/*
+sudo rm -rf  /var/cache/apt/*
+du /var/cache/apt/*
+du /var/*
+du .rustup/*
+du .rustup/toolchains/*
+du .rustup/toolchains/stable-aarch64-unknown-linux-gnu/*
+du .rustup/toolchains/stable-aarch64-unknown-linux-gnu/share/*
+cler
+clear
+whereis go
+/usr/bin/go version
+/usr/bin/go/bin/
+cd -
+/usr/bin/go/bin/go version
+spf
+du sources/go/*
+rm -rf sources/go/
+sudo rm -rf sources/go/
+du sources/*
+du workspace/*
+du workspace/algorithms/*
+du workspace/algorithms/Rust/*
+du workspace/algorithms/Rust/target/*
+du workspace/algorithms/Rust/target/debug/build/zerocopy-80ad9f56117be06e/root-output
+sudo rm -rf  workspace/algorithms/Rust/target/
+du workspace/algorithms/*
+nvim
+nvi
+nvim
+du /usr/local/share/nvim/*
+du .cache/*
+workspace/huetiful/
+docs/
+yarn dev
+ls -a
+cd -
+cd
+sudo rm -fr .cache/yarn/*
+du .cache/*
+sudo rm -fr .cache/zig/*
+sudo rm -fr .cache/gh/*
+whereis gh
+whereis git
+sudo rm -fr .cache/go-build/*
+du .cache/*
+sudo rm -fr .cache/gopls/*
+du *
+sudo rm -fr .zvm 
+ls
+tldr unzip
+unzip lualine.nvim-master.zip grug-far.nvim-main.zip -d .local/share/nvim/lazy/
+ls
+unzip grug-far.nvim-main.zip p -d .local/share/nvim/lazy/
+cd .local/share/nvim/lazy/
+ls
+rm -rf smear-cursor.nvim.cloning
+ls -a
+clear
+spf
+ls
+unzip grug-far.nvim-main.zip p -d .local/share/nvim/lazy/
+ls
+rm -rf *.cloning
+ls
+cd -
+ls
+unzip grug-far.nvim-main.zip  -d .local/share/nvim/lazy/
+ls
+nvim
+unzip grug-far.nvim-main.zip  -d .local/share/nvim/lazy/grug-far.nvim
+nvim
+rm -rf .local/share/nvim/lazy/grug-far.*
+~
+ls
+unzip lualine.nvim-master.zip -d sources/nvim-lualine.nvim/
+nvim
+obsidian 
+whereis obsidian 
+/usr/local/bin/obsidian
+rm /usr/local/bin/obsidian
+sudo rm /usr/local/bin/obsidian
+exit
+nvim
+exit
+nvim
+ls
+chmod +x Obsidian-1.8.10-arm64.AppImage   && mv Obsidian-1.8.10-arm64.AppImage obsidian
+chmod +x Obsidian-1.8.10-arm64.AppImage   and  mv Obsidian-1.8.10-arm64.AppImage obsidian
+sudo  mv Obsidian-1.8.10-arm64.AppImage /usr/local/bin/obsidian 
+obsidian 
+sudo apt install libnss3 
+obsidian 
+zsh
+exit
+clear
+nvim
+clear
+workspace/
+lzf/
+clear
+nvim
+..
+huetiful/
+cleae
+clear
+clears
+clear
+git count-objects
+..
+ls
+hugo 
+hugo help new
+huetiful/
+nvim
+sudo apt install zsh tcsh
+zsh
+tcsh 
+exit
+whereis fish
+tcsh
+exit
+workspace/lzf/
+nvim
+ps
+ki;; 4055
+kill 4055
+ps
+nvim
+ls
+exit
+nvim
+workspace/lzf/
+nvim
+exit
+workspace/lzf
+workspace/lzf/
+nvim
+cd -
+spf
+exit
+spf
+ls
+ls -a
+ls
+bash
+fish
+exit
+cleae
+clear
+spf
+ls
+fish
+ls
+nvim
+ls
+workspace/lzf/
+nvim
+cd -
+ls
+fish
+exit
+nvim
+lua
+nvim
+clear
+nvim
+ps
+exit
+exiit
+nvim .local/share/nvim/lazy/LazyVim/lua/lazyvim/config/keymaps.lua 
+exit
+udp
+man ftp
+man go
+rustdoc
+rustdoc | pager 
+man bash | pager
+man bash
+chsh -s which zsh
+fish
+exit
+nvim
+exit
+which $env.SHELL
+exit
+clear
+exit
+nvim
+kill 3582
+nvim
+exit
+which $env.SHELL
+exit
+help
+ps | where cpu > 0
+tldr tmux
+exit
+nvim
+tmux
+exit
+chsh -s /usr/bin/fish
+man chsh
+sudo nvim /etc/shells 
+chsh -s /usr/bin/fish
+exit
+bash
+exit
+reset
+exit
+eval -- "$(starship init bash --print-full)"
+xx
+exit
+xx
+exir
+exit
+bash
+exit
+bash
+exit
+starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+nu init
+starship init nu
+starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+exit
+ls -a
+exit
+nvim $nu.config-path
+exit
+nvim $nu.config-path
+exit
+clear
+exit
+man nu
+nu --help

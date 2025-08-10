@@ -1,0 +1,108 @@
+format = """
+
+$container\
+$directory\
+
+$cmd_duration\
+$shell\
+$sudo\
+$deno\
+$golang\
+$java\
+$nodejs\
+$hostname\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$git_metrics\
+$docker_context\
+$package\
+$lua\
+$rust\
+$memory_usage\
+$line_break\
+$jobs\
+$status\
+$shell\
+$character\
+
+
+"""
+
+
+right_format = """ 
+$time\
+$battery\
+$shlvl\
+"""
+
+[shlvl]
+disabled = false
+symbol = """🐚 """
+threshold = 3
+format = """\n[$symbol$shlvl]($style) """
+
+
+[shell]
+zsh_indicator = ' 🗿'
+nu_indicator = ' 🧙🏽‍♂'
+fish_indicator = '🐟'
+disabled = true
+
+
+[battery]
+disabled = false
+full_symbol = '💯 '
+charging_symbol = '🔌 '
+discharging_symbol = '⛫ '
+
+[[battery.display]]
+threshold = 100
+style = 'bold green'
+
+
+[character]
+success_symbol = '[●](bold green)'
+error_symbol = '[⮾](bold red)'
+
+[bun]
+format = '[$symbol](bold green)'
+disabled = false
+
+[cmd_duration]
+show_milliseconds = false
+format = """\n [$duration]($style) ⌛ \n\n"""
+show_notifications = true
+min_time_to_notify = 30_000
+
+[container]
+symbol = ' 🗿'
+style = 'bold cyan'
+format = '[$symbol ]($style)'
+
+
+[directory]
+format = """[$path]($style)[$read_only]($read_only_style) \n"""
+
+
+[memory_usage]
+threshold = 10
+
+
+[package]
+format = ' [$symbol @$version]($style)'
+
+[nodejs]
+format = '[$symbol]($style)'
+
+
+# [sudo]
+# disabled = false
+# symbol = 'root'
+# format = """[ as $symbol]($style) \n"""
+#
+[time]
+disabled = true
+format = """ [$time]($style)\n"""
+style = 'dim purple'
