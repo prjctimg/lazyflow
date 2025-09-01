@@ -1,0 +1,644 @@
+-- tumblr.lua
+-- A complete Tumblr REST API v2 client with OAuth 1.0a signing
+-- Dependencies: luasocket, luasec, dkjson, luaossl
+-- Author: You
+
+local https = require("ssl.https")
+local ltn12 = require("ltn12")
+local json = require("dkjson")
+
+-- luaossl
+local hmac = require("openssl.hmac")
+local base64 = require("openssl.base64")
+
+local Tumblr = {}
+Tumblr.__index = Tumblr
+
+-- ==========
+-- Utilities
+-- ==========
+
+local function urlencode(str)
+  return (tostring(str)
+    :gsub("\n", "\r\n")
+    :gsub("([^%w%-_%.%~])", function(c)
+      return string.format("%%%02X", string.byte(c))
+    end))
+end
+
+local function urldecode(str)
+  return (str:gsub("%%(%x%x)", function(h) return string.char(tonumber(h, 16)) end))
+end
+
+local function generate_nonce(len)
+  len = len or 24
+  local t = {}
+  for i = 1, len do
+    t[i] = string.char(math.random(48, 122))
+  end
+  return table.concat(t)
+end
+
+local function now()
+  return tostring(os.time())
+end
+
+local function is_array(tbl)
+  if type(tbl) ~= "table" then return false end
+  local i = 0
+  for _ in pairs(tbl) do
+    i = i + 1
+    if tbl[i] == nil then return false end
+  end
+  return true
+end
+
+local function merge_params(a, b)
+  local out = {}
+  for k, v in pairs(a or {}) do out[k] = v end
+  for k, v in pairs(b or {}) do
+    -- naive overwrite; use arrays with repeated keys for fields like data[]
+    out[k] = v
+  end
+  return out
+end
+
+local function collect_param_pairs(params)
+  -- Returns a flat array of {k, v} pairs, expanding arrays and preserving repeated keys
+  local pairs_out = {}
+  for k, v in pairs(params or {}) do
+    if type(v) == "nil" then
+      -- skip
+    elseif is_array(v) then
+      for _, vv in ipairs(v) do
+        table.insert(pairs_out, { k, tostring(vv) })
+      end
+    else
+      table.insert(pairs_out, { k, tostring(v) })
+    end
+  end
+  return pairs_out
+end
+
+local function normalize_params_for_signature(all_params)
+  local pairs_out = collect_param_pairs(all_params)
+  table.sort(pairs_out, function(a, b)
+    if a[1] == b[1] then
+      return a[2] < b[2]
+    else
+      return a[1] < b[1]
+    end
+  end)
+  local encoded = {}
+  for _, kv in ipairs(pairs_out) do
+    table.insert(encoded, urlencode(kv[1]) .. "=" .. urlencode(kv[2]))
+  end
+  return table.concat(encoded, "&")
+end
+
+local function parse_url(url)
+  -- returns scheme, host, path, query_string (no leading ?), port
+  local scheme, rest = url:match("^(https?)://(.+)$")
+  local host_port, path_q = rest:match("^([^/]+)(/.*)$")
+  local host, port = host_port, nil
+  if host_port:find(":") then
+    host, port = host_port:match("^([^:]+):(%d+)$")
+  end
+  local path, query = path_q, ""
+  if path_q:find("%?") then
+    path, query = path_q:match("^([^%?]+)%??(.*)$")
+  end
+  return scheme, host, path, query, port
+end
+
+local function split_query(qs)
+  local params = {}
+  if not qs or qs == "" then return params end
+  for pair in string.gmatch(qs, "([^&]+)") do
+    local k, v = pair:match("^([^=]+)=?(.*)$")
+    if k then
+      k = urldecode(k)
+      v = urldecode(v or "")
+      if params[k] ~= nil then
+        if type(params[k]) ~= "table" then
+          params[k] = { params[k] }
+        end
+        table.insert(params[k], v)
+      else
+        params[k] = v
+      end
+    end
+  end
+  return params
+end
+
+local function build_query(params)
+  local pairs_out = collect_param_pairs(params or {})
+  local encoded = {}
+  for _, kv in ipairs(pairs_out) do
+    table.insert(encoded, urlencode(kv[1]) .. "=" .. urlencode(kv[2]))
+  end
+  return table.concat(encoded, "&")
+end
+
+local function hmac_sha1_base64(key, data)
+  local hm = hmac.new(key, "sha1")
+  hm:update(data)
+  local digest_bin = hm:final()
+  return base64(digest_bin)
+end
+
+-- Multipart builder (files: { {name="data[]", filename="file.jpg", content=read_bytes, content_type="image/jpeg"} } )
+local function build_multipart(fields, files)
+  local boundary = "------------------------" .. tostring(math.floor(math.random() * 1e10)) .. tostring(os.time())
+  local parts = {}
+
+  local function add(s) table.insert(parts, s) end
+
+  for _, kv in ipairs(collect_param_pairs(fields or {})) do
+    local name, value = kv[1], kv[2]
+    add("--" .. boundary .. "\r\n")
+    add('Content-Disposition: form-data; name="' .. name .. '"\r\n\r\n')
+    add(tostring(value) .. "\r\n")
+  end
+
+  for _, file in ipairs(files or {}) do
+    local name = file.name
+    local filename = file.filename or "upload"
+    local content_type = file.content_type or "application/octet-stream"
+    local content = file.content -- string (binary)
+    add("--" .. boundary .. "\r\n")
+    add('Content-Disposition: form-data; name="' .. name .. '"; filename="' .. filename .. '"\r\n")
+    add("Content-Type: " .. content_type .. "\r\n\r\n")
+    add(content)
+    if not content:match("\r\n$") then add("\r\n") end
+  end
+
+  add("--" .. boundary .. "--\r\n")
+
+  local body = table.concat(parts)
+  local content_type = "multipart/form-data; boundary=" .. boundary
+  return body, content_type
+end
+
+-- Read file as binary
+local function read_file(path)
+  local f, err = io.open(path, "rb")
+  if not f then return nil, err end
+  local data = f:read("*all")
+  f:close()
+  return data
+end
+
+-- =========================
+-- OAuth 1.0a Signing (HMAC)
+-- =========================
+
+local function base_url_no_query(url)
+  local scheme, host, path, _, port = parse_url(url)
+  local authority = host
+  if port and ((scheme == "http" and port ~= "80") or (scheme == "https" and port ~= "443")) then
+    authority = host .. ":" .. port
+  end
+  return string.lower(scheme) .. "://" .. string.lower(authority) .. path
+end
+
+local function sign_oauth_request(method, url, oauth_credentials, query_params, body_params, content_type)
+  -- Only include body params in signature for application/x-www-form-urlencoded
+  local body_for_sig = {}
+  if (content_type or ""):find("application/x%-www%-form%-urlencoded") then
+    body_for_sig = body_params or {}
+  end
+
+  local scheme, _, _, qs = parse_url(url)
+  local query_from_url = split_query(qs)
+
+  local all_params = {}
+  for k, v in pairs(query_from_url) do all_params[k] = v end
+  for k, v in pairs(query_params or {}) do all_params[k] = v end
+
+  local oauth_params = {
+    oauth_consumer_key = oauth_credentials.consumer_key,
+    oauth_nonce = generate_nonce(),
+    oauth_signature_method = "HMAC-SHA1",
+    oauth_timestamp = now(),
+    oauth_token = oauth_credentials.token,
+    oauth_version = "1.0",
+  }
+
+  -- Merge into a single table for normalization
+  for k, v in pairs(oauth_params) do all_params[k] = v end
+  for k, v in pairs(body_for_sig or {}) do
+    -- Note: this will collapse arrays; for signature correctness we need repeated keys.
+    -- normalize_params_for_signature handles arrays if values are arrays.
+    all_params[k] = v
+  end
+
+  local norm = normalize_params_for_signature(all_params)
+  local base_elems = {
+    string.upper(method),
+    urlencode(base_url_no_query(url)),
+    urlencode(norm),
+  }
+  local base_string = table.concat(base_elems, "&")
+
+  local signing_key = urlencode(oauth_credentials.consumer_secret) .. "&" .. urlencode(oauth_credentials.token_secret or "")
+  local signature = hmac_sha1_base64(signing_key, base_string)
+  oauth_params.oauth_signature = signature
+
+  -- Build Authorization header
+  local header_params = {}
+  for k, v in pairs(oauth_params) do
+    table.insert(header_params, k .. '="' .. urlencode(v) .. '"')
+  end
+  table.sort(header_params)
+  local auth_header = "OAuth " .. table.concat(header_params, ", ")
+
+  return auth_header
+end
+
+-- ==========
+-- Constructor
+-- ==========
+
+function Tumblr.new(opts)
+  -- opts: { consumer_key, consumer_secret, token, token_secret, base_url? }
+  assert(opts and opts.consumer_key and opts.consumer_secret, "consumer_key and consumer_secret required")
+  local self = setmetatable({}, Tumblr)
+  self.consumer_key = opts.consumer_key
+  self.consumer_secret = opts.consumer_secret
+  self.token = opts.token
+  self.token_secret = opts.token_secret
+  self.base_url = opts.base_url or "https://api.tumblr.com/v2"
+  self.default_user_agent = "tumblr-lua-sdk/1.0"
+  self.timeout = opts.timeout or 60
+  return self
+end
+
+-- ===============================
+-- Core HTTP + OAuth request layer
+-- ===============================
+
+function Tumblr:_request(method, path, args)
+  -- args: { query = {}, body = {}, headers = {}, files = { ... }, auth = "oauth"|"key"|"none", expect_binary = false }
+  local query = args and args.query or {}
+  local body = args and args.body or {}
+  local files = args and args.files or nil
+  local extra_headers = args and args.headers or {}
+  local expect_binary = args and args.expect_binary or false
+  local auth_mode = args and args.auth or "oauth" -- default to oauth when credentials available
+
+  local url = self.base_url .. path
+  local querystring = build_query(query)
+  if querystring ~= "" then
+    url = url .. "?" .. querystring
+  end
+
+  local req_headers = {
+    ["User-Agent"] = self.default_user_agent,
+    ["Accept"] = "application/json",
+  }
+
+  for k, v in pairs(extra_headers) do req_headers[k] = v end
+
+  local source, content_type, content_length
+
+  local method_upper = string.upper(method)
+
+  local has_files = files and #files > 0
+
+  if method_upper == "POST" or method_upper == "PUT" then
+    if has_files then
+      local mp_body, mp_ct = build_multipart(body, files)
+      source = ltn12.source.string(mp_body)
+      content_type = mp_ct
+      content_length = #mp_body
+    else
+      local form = build_query(body)
+      source = ltn12.source.string(form)
+      content_type = "application/x-www-form-urlencoded"
+      content_length = #form
+    end
+    req_headers["Content-Type"] = content_type
+    req_headers["Content-Length"] = tostring(content_length)
+  end
+
+  -- Authentication
+  if auth_mode == "oauth" then
+    assert(self.token and self.token_secret, "OAuth token and token_secret required for this endpoint")
+    local auth_header = sign_oauth_request(
+      method_upper,
+      url,
+      {
+        consumer_key = self.consumer_key,
+        consumer_secret = self.consumer_secret,
+        token = self.token,
+        token_secret = self.token_secret,
+      },
+      query,
+      body,
+      content_type
+    )
+    req_headers["Authorization"] = auth_header
+  elseif auth_mode == "key" then
+    -- Append api_key if not already present
+    if not query.api_key then
+      if url:find("api_key=") == nil then
+        if url:find("%?") then
+          url = url .. "&api_key=" .. urlencode(self.consumer_key)
+        else
+          url = url .. "?api_key=" .. urlencode(self.consumer_key)
+        end
+      end
+    end
+  else
+    -- none
+  end
+
+  local resp_chunks = {}
+  local req = {
+    url = url,
+    method = method_upper,
+    headers = req_headers,
+    source = source,
+    sink = ltn12.sink.table(resp_chunks),
+    protocol = "tlsv1_2",
+    verify = "none", -- Adjust if you want to verify certificates with a CA bundle
+    timeout = self.timeout,
+  }
+
+  local _, code, resp_headers, status = https.request(req)
+  local raw = table.concat(resp_chunks)
+
+  local meta = {
+    status = status,
+    code = tonumber(code),
+    headers = resp_headers or {},
+    raw = raw,
+  }
+
+  if expect_binary then
+    return raw, meta
+  end
+
+  local data, pos, err = json.decode(raw, 1, nil)
+  if not data then
+    return nil, meta, ("JSON decode error: %s"):format(err or "unknown")
+  end
+
+  -- Normalize errors
+  if meta.code and meta.code >= 400 then
+    return data, meta, ("HTTP error %s"):format(meta.code)
+  end
+
+  return data, meta, nil
+end
+
+-- ================
+-- Generic endpoint
+-- ================
+
+function Tumblr:call(method, path, opts)
+  return self:_request(method, path, opts or {})
+end
+
+-- =========
+-- User APIs
+-- =========
+
+function Tumblr:userInfo()
+  return self:_request("GET", "/user/info", { auth = "oauth" })
+end
+
+function Tumblr:dashboard(params)
+  return self:_request("GET", "/user/dashboard", { query = params, auth = "oauth" })
+end
+
+function Tumblr:userLikes(params)
+  return self:_request("GET", "/user/likes", { query = params, auth = "oauth" })
+end
+
+function Tumblr:userFollowing(params)
+  return self:_request("GET", "/user/following", { query = params, auth = "oauth" })
+end
+
+function Tumblr:follow(url_or_blog)
+  return self:_request("POST", "/user/follow", { body = { url = url_or_blog }, auth = "oauth" })
+end
+
+function Tumblr:unfollow(url_or_blog)
+  return self:_request("POST", "/user/unfollow", { body = { url = url_or_blog }, auth = "oauth" })
+end
+
+-- =========
+-- Blog APIs
+-- =========
+
+function Tumblr:blogInfo(blog_identifier)
+  return self:_request("GET", "/blog/" .. blog_identifier .. "/info", { auth = "key" })
+end
+
+function Tumblr:blogAvatar(blog_identifier, size)
+  local path = "/blog/" .. blog_identifier .. "/avatar"
+  if size then path = path .. "/" .. tostring(size) end
+  local body, meta = self:_request("GET", path, { auth = "none", expect_binary = true })
+  return body, meta
+end
+
+function Tumblr:blogFollowers(blog_identifier, params)
+  return self:_request("GET", "/blog/" .. blog_identifier .. "/followers", { query = params, auth = "oauth" })
+end
+
+function Tumblr:blogLikes(blog_identifier, params)
+  return self:_request("GET", "/blog/" .. blog_identifier .. "/likes", { query = params, auth = "oauth" })
+end
+
+function Tumblr:posts(blog_identifier, params)
+  -- Optional type filtering via params.type
+  return self:_request("GET", "/blog/" .. blog_identifier .. "/posts", { query = params, auth = "key" })
+end
+
+function Tumblr:queue(blog_identifier, params)
+  return self:_request("GET", "/blog/" .. blog_identifier .. "/posts/queue", { query = params, auth = "oauth" })
+end
+
+function Tumblr:drafts(blog_identifier, params)
+  return self:_request("GET", "/blog/" .. blog_identifier .. "/posts/draft", { query = params, auth = "oauth" })
+end
+
+function Tumblr:submissions(blog_identifier, params)
+  return self:_request("GET", "/blog/" .. blog_identifier .. "/posts/submission", { query = params, auth = "oauth" })
+end
+
+-- ==================
+-- Posting + Editing
+-- ==================
+
+function Tumblr:createPost(blog_identifier, post_params, files)
+  -- post_params must include type=...
+  return self:_request("POST", "/blog/" .. blog_identifier .. "/post", {
+    body = post_params,
+    files = files,
+    auth = "oauth",
+  })
+end
+
+function Tumblr:editPost(blog_identifier, id, fields)
+  local body = merge_params({ id = id }, fields or {})
+  return self:_request("POST", "/blog/" .. blog_identifier .. "/post/edit", {
+    body = body,
+    auth = "oauth",
+  })
+end
+
+function Tumblr:reblogPost(blog_identifier, id, reblog_key, fields)
+  local body = merge_params({ id = id, reblog_key = reblog_key }, fields or {})
+  return self:_request("POST", "/blog/" .. blog_identifier .. "/post/reblog", {
+    body = body,
+    auth = "oauth",
+  })
+end
+
+function Tumblr:deletePost(blog_identifier, id)
+  return self:_request("POST", "/blog/" .. blog_identifier .. "/post/delete", {
+    body = { id = id },
+    auth = "oauth",
+  })
+end
+
+-- Queue management
+function Tumblr:queueReorder(blog_identifier, params)
+  -- params: { post_ids = "id1,id2,...", insert_after = POST_ID }
+  return self:_request("POST", "/blog/" .. blog_identifier .. "/posts/queue/reorder", {
+    body = params,
+    auth = "oauth",
+  })
+end
+
+function Tumblr:queueShuffle(blog_identifier)
+  return self:_request("POST", "/blog/" .. blog_identifier .. "/posts/queue/shuffle", {
+    body = {},
+    auth = "oauth",
+  })
+end
+
+-- ==========================
+-- Convenience post creators
+-- ==========================
+
+function Tumblr:createTextPost(blog, title, body, opts)
+  return self:createPost(blog, merge_params({
+    type = "text",
+    title = title,
+    body = body,
+  }, opts or {}))
+end
+
+function Tumblr:createQuotePost(blog, quote, source, opts)
+  return self:createPost(blog, merge_params({
+    type = "quote",
+    quote = quote,
+    source = source,
+  }, opts or {}))
+end
+
+function Tumblr:createLinkPost(blog, title, url, description, opts)
+  return self:createPost(blog, merge_params({
+    type = "link",
+    title = title,
+    url = url,
+    description = description,
+  }, opts or {}))
+end
+
+function Tumblr:createChatPost(blog, title, dialogue, opts)
+  return self:createPost(blog, merge_params({
+    type = "chat",
+    title = title,
+    dialogue = dialogue,
+  }, opts or {}))
+end
+
+function Tumblr:createAudioPost(blog, audio_url_or_external_url, caption, opts)
+  -- Use 'external_url' for externally hosted audio
+  local params = merge_params({
+    type = "audio",
+    caption = caption,
+  }, opts or {})
+  if audio_url_or_external_url then
+    params.external_url = audio_url_or_external_url
+  end
+  return self:createPost(blog, params)
+end
+
+function Tumblr:createVideoPost(blog, embed_or_caption, opts)
+  -- For embedded videos, pass 'embed' in opts; for file upload, use files argument in createPostWithFiles
+  return self:createPost(blog, merge_params({
+    type = "video",
+    caption = embed_or_caption,
+  }, opts or {}))
+end
+
+function Tumblr:createAnswerPost(blog, question, answer, opts)
+  return self:createPost(blog, merge_params({
+    type = "answer",
+    question = question,
+    answer = answer,
+  }, opts or {}))
+end
+
+-- Photo post with local files (data[]), remote URLs (source), or both
+function Tumblr:createPhotoPost(blog, opts)
+  -- opts supports:
+  -- - source = "image_url" or { "url1", "url2" }
+  -- - data = { "/path/to/a.jpg", "/path/to/b.jpg" } (local files)
+  -- - caption, click_through_url, tags, state, etc.
+  local params = {}
+  for k, v in pairs(opts or {}) do
+    if k ~= "data" then params[k] = v end
+  end
+  params.type = "photo"
+
+  local files = {}
+  if opts and opts.data then
+    local list = is_array(opts.data) and opts.data or { opts.data }
+    for _, path in ipairs(list) do
+      local content, err = read_file(path)
+      assert(content, "Failed to read file: " .. tostring(err))
+      table.insert(files, {
+        name = "data[]",
+        filename = path:match("([^/\\]+)$") or "upload",
+        content = content,
+        content_type = "image/jpeg", -- best-effort; override by passing files directly in createPost
+      })
+    end
+  end
+
+  return self:createPost(blog, params, files)
+end
+
+-- =============
+-- Tagged search
+-- =============
+
+function Tumblr:tagged(tag, params)
+  params = params or {}
+  params.tag = tag
+  -- 'key' auth for public tagged endpoint
+  return self:_request("GET", "/tagged", { query = params, auth = "key" })
+end
+
+-- ======================
+-- Helpers and shortcuts
+-- ======================
+
+function Tumblr:setTimeout(seconds)
+  self.timeout = tonumber(seconds) or self.timeout
+end
+
+function Tumblr:setToken(token, token_secret)
+  self.token = token
+  self.token_secret = token_secret
+end
+
+return Tumblr

@@ -1,0 +1,154 @@
+
+
+
+right_format = """ 
+$time\
+$battery\
+$shlvl\
+"""
+
+
+format = """
+
+$username\
+$container\
+$directory\
+$cmd_duration\
+$sudo\
+$deno\
+$golang\
+$java\
+$zig\
+$nodejs\
+$hostname\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$git_metrics\
+$docker_context\
+$package\
+$lua\
+$r\
+$perl\
+$python\
+$os\
+$memory_usage\
+$line_break\
+$jobs\
+$status\
+$shell\
+$character\
+
+"""
+
+
+[git_commit]
+disabled = false
+commit_hash_length = 4
+tag_symbol = '🔖 '
+
+
+[git_status]
+style = 'bold cyan'
+format = '([$all_status$ahead_behind]($style) )'
+conflicted = '🏳${count}|'
+ahead = '🏎💨 ${count}|'
+behind = '😰 ${count}|'
+diverged = '😵'
+up_to_date = '✓ '
+untracked = '🤷 ${count}|'
+stashed = '📦 ${count}|'
+modified = '📝 ${count}|'
+staged = '[++\($count\)](green)'
+renamed = '👅 ${count}|'
+deleted = '🗑 ${count}|'
+
+
+[shlvl]
+disabled = false
+symbol = """🐚 """
+threshold = 3
+format = """\n[$symbol$shlvl]($style) """
+
+
+[shell]
+disabled = false
+
+
+[battery]
+disabled = false
+full_symbol = '💯 '
+charging_symbol = '🔌 '
+discharging_symbol = '⛫ '
+
+[[battery.display]]
+threshold = 100
+style = 'bold green'
+
+
+[character]
+# error_symbol = '[●](bold red)'
+error_symbol = '[⮾](bold red)'
+
+[bun]
+format = '[$symbol](bold green)'
+disabled = false
+
+[cmd_duration]
+show_milliseconds = false
+format = """\n [$duration]($style) ⌛ \n\n"""
+show_notifications = true
+min_time_to_notify = 30_000
+
+[container]
+symbol = ' 🐧'
+disabled = true
+style = 'bold cyan'
+format = '[cros $symbol]($style)'
+
+[zig]
+format = '[$symbol($version )]($style)'
+symbol = " 🐊"
+style = "bold cyan"
+
+[directory]
+format = """ [🗺️ in $path]($style)[$read_only]($read_only_style) \n"""
+home_symbol = "🏚️"
+truncation_length = 1
+
+[directory.substitutions]
+'workspace' = '🧪'
+'huetiful' = '🎨'
+'math' = '🧮'
+'sources' = '🔬'
+'me' = '📓'
+# 'tumblr.nvim' = '👥'
+'zig-agg' = '📺'
+'lzf' = '🦥'
+'.nvim' = '📜'
+[c]
+symbol = " 🧮"
+format = ' [$symbol $name $version]($style)'
+
+[memory_usage]
+threshold = 10
+
+
+[package]
+format = ' [$symbol @$version]($style)'
+
+[nodejs]
+format = '[$symbol]($style)'
+
+[sudo]
+disabled = true
+symbol = '|= su '
+format = """[$symbol]($style)\n"""
+
+
+[time]
+disabled = false
+format = """ [$time ]($style)\n """
+style = 'dim purple'
+time_format = "%H|%M"

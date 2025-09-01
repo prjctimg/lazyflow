@@ -1,0 +1,80 @@
+export EDITOR = 'nvim'
+export VIMRC = "$HOME/.config/nvim/"
+export GHOSTTYRC = "$HOME/.config/ghostty/config"
+export GHOSTTY_SHELL_INTEGRATION_NO_SUDO = '0'
+export SHELL = 'fish'
+export SUDO_EDITOR = 'nvim'
+export CGO_ENABLED = 'true' 
+
+# Update PATH
+export PATH = "$HOME/.bun/bin:/usr/bin/go/bin:/usr/local/sbin:/usr/local/bin:/usr/local/games:/usr/sbin:/usr/bin:/usr/games:/sbin:/bin:$HOME/go/bin:$HOME/.x-cmd.root/bin:$HOME/go/pkg/mod/github.com/spf13/cobra@v1.9.1/:$PATH"
+
+# Key bindings (same as Bash)
+bind -x '"\ea": "ai"' 
+bind -x '"\ee": "nvim"' 
+bind -x '"\et": "btop"' 
+bind -x '"\eo": "obsidian &"' 
+bind -x '"\eh": "invoke_bash \'x --help\'"' 
+bind -x '"\C-n": "navi"' 
+bind -x '"\e ": "spf"'  # Alt-Space
+bind -x '"\ef": "fzf"' 
+
+# Functions (using `proc` for YSH style)
+proc invoke_bash { bash -ci "$@"; } 
+proc wk { cd "$HOME/workspace/"; }
+proc cron { crontab "$@"; }
+proc rc { cd "$HOME/sources/"; }
+proc xx { exit 0; }
+proc vig { nvim "$GHOSTTYRC"; }
+proc ai { ollama run qwen2.5-coder:1.5b; }
+proc vif { nvim "$HOME/.config/fish/config.fish"; }
+proc vicron { nvim "$HOME/.config/.routines/"; }
+proc manx { invoke_bash "x --help"; } 
+proc lsx { invoke_bash "x ls $@"; } [cite: 2]
+proc to { touch "$@"; }
+proc so { source "$HOME/.config/oil/rc"; }
+proc vin { nvim "$VIMRC"; }
+proc rm { command rm -rfv "$@"; }
+proc see { viu "$@"; }
+proc git { x git "$@"; }
+proc obsidian { command obsidian --disable-gpu &; }
+proc ls { nu -c "ls --threads=true $@"; }
+proc lsp { invoke_bash "x path $@"; }
+proc chrome { garcon-url-handler --client "$@"; }
+proc vi { nvim "$@"; }
+proc mv { command mv -v "$@"; }
+proc cp { command cp -rvf "$@"; }
+proc du { command du -sh "$@"; }
+proc add-pkg { sudo nala install "$@"; }
+proc rm-pkg { sudo nala remove "$@" && sudo nala clean; }
+proc top { btop "$@"; }
+proc zig { /usr/bin/zig-aarch64-linux-0.15.0-dev.847+850655f06/zig "$@"; }
+
+proc cdd {
+    echo 'Change to path📁 directory'
+    if (test -z "$1") {
+        invoke_bash "x cd ."
+    } else {
+        invoke_bash "x cd $@"
+    }
+}
+
+proc agg {
+    for cast in "$@" {
+        command agg "$cast" "gif/$cast.gif" 
+    }
+}
+
+proc man {
+    command man "$@" | vi -R 
+}
+
+proc mtrx {
+    tr -c "[:digit:]" " " < /dev/urandom |
+    dd cbs=$COLUMNS conv=unblock |
+    GREP_COLOR="1;32" grep --color "[^ ]" 
+}
+
+# Initialization
+eval $(starship init bash)
+eval $(thefuck --alias)

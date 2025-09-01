@@ -1,0 +1,1 @@
+source "/home/prjctimg/.deno/env.fish"

@@ -1,0 +1,27 @@
+glib-2.0
+go
+workspace
+sources
+gh
+.config/obsidian/**/*
+.cache
+.deno
+.rbenv
+.npmrc
+.bun
+.cargo
+.npm
+.local
+.ssh
+.yarn
+.pki
+.x-cmd.root/
+.rustup
+# These files are important for keeping obsidian settings and state
+!.config/obsidian/obsidian.json
+!.config/obsidian/plugin-settings/
+!.config/obsidian/hotkeys.json
+!.config/obsidian/workspace.json
+!.config/obsidian/plugins.json
+!.config/obsidian/appearance.json
+
