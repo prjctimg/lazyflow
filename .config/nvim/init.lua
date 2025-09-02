@@ -58,5 +58,30 @@ end
 --   end
 -- end, { ["repeat"] = -1 })
 vim.defer_fn(function()
+  local greeting
+
+  if hour >= 5 and hour < 12 then
+    greeting = "Morning, Dean ☀️"
+  elseif hour >= 12 and hour < 17 then
+    greeting = "Afternoon, Dean 🌤️"
+  elseif hour >= 17 and hour < 21 then
+    greeting = "Evening, Dean 🌆"
+  else
+    greeting = "Burning the midnight oil, Dean? 🌙"
+  end
+
+  -- Send the greeting as a notification
+  Snacks.notify(greeting, {
+    title = "",
+    icon = "👋",
+    level = "info", -- could be "warn", "error", etc.
+    timeout = 4000, -- milliseconds before auto-hide
+  })
+end, 6000)
+
+vim.defer_fn(function()
   vim.cmd("TimerSession check")
-end, 4000)
+end, 30000)
+-- Time-based greeting using snacks.notify
+
+-- Call it immediately (or hook into an event)

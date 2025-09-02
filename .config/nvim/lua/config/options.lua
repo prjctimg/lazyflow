@@ -6,6 +6,6 @@ else
   emoji = "🌃  " -- Moon emoji for nighttime
 end
 vim.opt.winbar = "%=%m %f  " .. emoji
-vim.o.shell = "fish"
+vim.o.shell = "zsh"
 vim.o.mouse = "a"
 vim.o.clipboard = "unnamedplus"
