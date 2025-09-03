@@ -71,6 +71,7 @@ function lsx
 end
 
 
+# Source the configuration files
 function so
 
     # @fish-lsp-disable-next-line 1004
