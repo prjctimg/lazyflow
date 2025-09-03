@@ -7,7 +7,7 @@ $EDITOR = 'nvim'
 $VIMRC = f"{os.environ.get('XDG_CONFIG_HOME', os.path.expanduser('~/.config'))}/nvim/"
 $GHOSTTYRC = f"{os.environ.get('XDG_CONFIG_HOME', os.path.expanduser('~/.config'))}/ghostty/config"
 $GHOSTTY_SHELL_INTEGRATION_NO_SUDO = '0'
-$SHELL = 'fish'
+# $SHELL = 'fish'
 $SUDO_EDITOR = 'nvim'
 $CGO_ENABLED = 'true' 
 # Aliases and Functions
