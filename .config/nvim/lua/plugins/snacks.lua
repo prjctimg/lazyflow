@@ -79,7 +79,7 @@ return {
             section = "terminal",
             cmd = "fish -ic 'dashboard_greeter_nvim'",
             align = "center",
-            -- padding = 1,
+            padding = 1,
           },
           { section = "keys", gap = 1 },
 
@@ -87,9 +87,9 @@ return {
             pane = 1,
             enabled = true,
             section = "terminal",
-            cmd = "fish -ic daily_verse",
+            cmd = "fish -ic 'dashboard_footer_nvim'",
             align = "center",
-            -- padding = 1,
+            padding = 1,
           },
         },
 

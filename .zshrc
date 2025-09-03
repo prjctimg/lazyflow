@@ -58,7 +58,7 @@ function zig() { /usr/bin/zig-aarch64-linux-0.15.0-dev.847+850655f06/zig "$@"; }
 function cdd() {
     echo 'Change to path📁 directory'
     if (( ! $# )); then # Check if there are no arguments
-        invoke_bash "x cd ."
+        x cd .
     else
         invoke_bash "x cd $@"
     fi

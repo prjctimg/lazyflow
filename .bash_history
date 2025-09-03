@@ -248,3 +248,5 @@ echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 source ~/.bashrc
 exit
 ccelar
+xx
+exit
