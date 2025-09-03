@@ -25,8 +25,8 @@
 #         event.current_buffer.validate_and_handle()
 #     return _handler
 #
-# # Initialization
-# # execx($(starship init xonsh))
-#
-#
+# Initialization
+execx($(starship init xonsh))
+
+
 
