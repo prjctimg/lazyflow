@@ -14,12 +14,12 @@
 $
 
 # Command Line History (newest to oldest):
+:q
+|2,0,1756899082,,"q"
 :qa
 |2,0,1756888500,,"qa"
 :!nvim
 |2,0,1756888482,,"!nvim"
-:q
-|2,0,1755173825,,"q"
 :wqa
 |2,0,1755173798,,"wqa"
 :qa!
@@ -154,34 +154,42 @@ $
 |<"fn vicron { nvim ~/.config/.routines/ }","fn manx { invoke_bash 'x --help' } ","fn lsx {|@args| invoke_bash 'x ls '$@args } [cite: 2]","fn to {|@args| touch $@args }","fn so { source ~/.elvish/rc.elv }","fn vin { nvim $E:VIMRC }","fn rm {|@args| command rm -rfv $@args }","fn see {|@args| viu $@args }","fn git {|@args| x git $@args }","fn obsidian { command obsidian --disable-gpu & }","fn ls {|@args| nu -c 'ls --threads=true '$@args }","fn lsp {|@args| invoke_bash 'x path '$@args }"
 
 # File marks:
-'0  12  0  ~/.config
-|4,48,12,0,1756888500,"~/.config"
-'1  1  0  ~/.config/nushell/config.nu
-|4,49,1,0,1755181182,"~/.config/nushell/config.nu"
-'2  83  29  ~/.config/elvish/rc.elv
-|4,50,83,29,1755173825,"~/.config/elvish/rc.elv"
+'0  1  0  ~/.xonshrc
+|4,48,1,0,1756899082,"~/.xonshrc"
+'1  12  0  ~/.config
+|4,49,12,0,1756888500,"~/.config"
+'2  1  0  ~/.config/nushell/config.nu
+|4,50,1,0,1755181182,"~/.config/nushell/config.nu"
 '3  83  29  ~/.config/elvish/rc.elv
-|4,51,83,29,1755173798,"~/.config/elvish/rc.elv"
-'4  84  0  ~/.config/elvish/rc.elv
-|4,52,84,0,1755173739,"~/.config/elvish/rc.elv"
-'5  1  0  ~/.config/elvish/rc.elv
-|4,53,1,0,1755173739,"~/.config/elvish/rc.elv"
-'6  84  0  ~/.config/elvish/rc.elv
-|4,54,84,0,1755173739,"~/.config/elvish/rc.elv"
-'7  1  0  ~/.config/elvish/rc.elv
-|4,55,1,0,1755173739,"~/.config/elvish/rc.elv"
-'8  1  0  ~/d.md
-|4,56,1,0,1755072489,"~/d.md"
-'9  1  0  ~/workspace/lzf/ir
-|4,57,1,0,1754724830,"~/workspace/lzf/ir"
+|4,51,83,29,1755173825,"~/.config/elvish/rc.elv"
+'4  83  29  ~/.config/elvish/rc.elv
+|4,52,83,29,1755173798,"~/.config/elvish/rc.elv"
+'5  84  0  ~/.config/elvish/rc.elv
+|4,53,84,0,1755173739,"~/.config/elvish/rc.elv"
+'6  1  0  ~/.config/elvish/rc.elv
+|4,54,1,0,1755173739,"~/.config/elvish/rc.elv"
+'7  84  0  ~/.config/elvish/rc.elv
+|4,55,84,0,1755173739,"~/.config/elvish/rc.elv"
+'8  1  0  ~/.config/elvish/rc.elv
+|4,56,1,0,1755173739,"~/.config/elvish/rc.elv"
+'9  1  0  ~/d.md
+|4,57,1,0,1755072489,"~/d.md"
 
 # Jumplist (newest first):
+-'  1  0  ~/.xonshrc
+|4,39,1,0,1756899082,"~/.xonshrc"
+-'  12  0  ~/.config
+|4,39,12,0,1756888500,"~/.config"
 -'  12  0  ~/.config
 |4,39,12,0,1756888500,"~/.config"
 -'  1  0  ~/.config/nushell/config.nu
 |4,39,1,0,1755181182,"~/.config/nushell/config.nu"
 -'  1  0  ~/.config/nushell/config.nu
 |4,39,1,0,1755181182,"~/.config/nushell/config.nu"
+-'  1  0  ~/.config/nushell/config.nu
+|4,39,1,0,1755181182,"~/.config/nushell/config.nu"
+-'  1  0  ~/.config/nushell/config.nu
+|4,39,1,0,1755181182,"~/.config/nushell/config.nu"
 -'  83  29  ~/.config/elvish/rc.elv
 |4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
 -'  83  29  ~/.config/elvish/rc.elv
@@ -190,6 +198,22 @@ $
 |4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
 -'  83  29  ~/.config/elvish/rc.elv
 |4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
 -'  83  29  ~/.config/elvish/rc.elv
 |4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
 -'  83  29  ~/.config/elvish/rc.elv
@@ -214,6 +238,38 @@ $
 |4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
 -'  84  0  ~/.config/elvish/rc.elv
 |4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
+-'  84  0  ~/.config/elvish/rc.elv
+|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
+-'  84  0  ~/.config/elvish/rc.elv
+|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
+-'  84  0  ~/.config/elvish/rc.elv
+|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
+-'  84  0  ~/.config/elvish/rc.elv
+|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
+-'  84  0  ~/.config/elvish/rc.elv
+|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
+-'  84  0  ~/.config/elvish/rc.elv
+|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
+-'  84  0  ~/.config/elvish/rc.elv
+|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
+-'  84  0  ~/.config/elvish/rc.elv
+|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
+-'  1  0  ~/.config/elvish/rc.elv
+|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
+-'  1  0  ~/.config/elvish/rc.elv
+|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
+-'  1  0  ~/.config/elvish/rc.elv
+|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
+-'  1  0  ~/.config/elvish/rc.elv
+|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
+-'  1  0  ~/.config/elvish/rc.elv
+|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
+-'  1  0  ~/.config/elvish/rc.elv
+|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
+-'  1  0  ~/.config/elvish/rc.elv
+|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
+-'  1  0  ~/.config/elvish/rc.elv
+|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
 -'  1  0  ~/.config/elvish/rc.elv
 |4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
 -'  1  0  ~/.config/elvish/rc.elv
@@ -294,88 +350,38 @@ $
 |4,39,1,0,1755072489,"~/d.md"
 -'  1  0  ~/d.md
 |4,39,1,0,1755072489,"~/d.md"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  1  0  ~/workspace/lzf/ir
-|4,39,1,0,1754724830,"~/workspace/lzf/ir"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
 
 # History of marks within files (newest to oldest):
+
+> ~/.xonshrc
+	*	1756899074	0
+	"	1	0
 
 > ~/.config/nushell/config.nu
 	*	1755181177	0
