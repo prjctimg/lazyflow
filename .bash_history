@@ -250,3 +250,5 @@ exit
 ccelar
 xx
 exit
+elvish 
+exit

@@ -1,6 +1,6 @@
 function fish_greeting
 
-    daily_verse
+    daily_verse | pv -qL 50
 
 
 end

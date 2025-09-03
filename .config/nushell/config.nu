@@ -107,23 +107,6 @@ $env.SHELL = "fish"
 $env.SUDO_EDITOR = "nvim"
 $env.CGO_ENABLED = "true" 
 
-# Keybindings should go in `config.nu`
-let-env keybindings = {
-  "edit": {
-    "emacs": [
-      { "key": "alt-a", "action": { "send": "Enter", "text": "ai" } },
-      { "key": "alt-e", "action": { "send": "Enter", "text": "nvim" } },
-      { "key": "alt-t", "action": { "send": "Enter", "text": "btop" } },
-      { "key": "alt-o", "action": { "send": "Enter", "text": "obsidian &" } },
-      { "key": "alt-h", "action": { "send": "Enter", "text": "invoke_bash 'x --help'" } },
-      { "key": "control-n", "action": { "send": "Enter", "text": "navi" } },
-      { "key": "alt-space", "action": { "send": "Enter", "text": "spf" } },
-      { "key": "alt-f", "action": { "send": "Enter", "text": "fzf" } },
-    ]
-  }
-}
-
-# Definitions can go in `config.nu` or a custom module
 def invoke_bash [cmd: string] { bash -ci $cmd } 
 def wk [] { cd $"($env.HOME)/workspace/" }
 def cron [...args] { command crontab ...$args }
@@ -154,8 +137,6 @@ def zig [...args] { /usr/bin/zig-aarch64-linux-0.15.0-dev.847+850655f06/zig ...$
 
 
 
-# Override the built-in `ls`
-hide-env ls
 def ls [...args] { nu -c $"ls --threads=true (...$args)" }
 
 def cdd [...args] {
@@ -167,7 +148,7 @@ def agg [...args] {
     for cast in $args { command agg $cast $"gif/($cast).gif"  }
 }
 
-def man [...args] { command man ...$args | vi -R } 
+def man [...args] { command man ...$args | nvim -R } 
 
 def mtrx [] {
     ^tr -c "[:digit:]" " " < /dev/urandom |

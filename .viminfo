@@ -10,9 +10,14 @@
 
 # hlsearch on (H) or off (h):
 ~h
+# Last Substitute String:
+$
+
 # Command Line History (newest to oldest):
 :qa
-|2,0,1755181182,,"qa"
+|2,0,1756888500,,"qa"
+:!nvim
+|2,0,1756888482,,"!nvim"
 :q
 |2,0,1755173825,,"q"
 :wqa
@@ -27,6 +32,8 @@
 |2,0,1750518824,,"w"
 
 # Search String History (newest to oldest):
+? @$
+|2,1,1756888468,,"@$"
 
 # Expression History (newest to oldest):
 
@@ -35,7 +42,7 @@
 # Debug Line History (newest to oldest):
 
 # Registers:
-""1	CHAR	0
+""0	CHAR	0
 	set-env EDITOR nvim
 	set-env VIMRC (path-join $E:XDG_CONFIG_HOME 'nvim/')
 	set-env GHOSTTYRC (path-join $E:XDG_CONFIG_HOME 'ghostty/config')
@@ -86,34 +93,93 @@
 	fn obsidian { command obsidian --disable-gpu & }
 	fn ls {|@args| nu -c 'ls --threads=true '$@args }
 	fn lsp {|@args| invoke_bash 'x path '$@args }
-|3,1,1,0,50,0,1755173728,"set-env EDITOR nvim","set-env VIMRC (path-join $E:XDG_CONFIG_HOME 'nvim/')","set-env GHOSTTYRC (path-join $E:XDG_CONFIG_HOME 'ghostty/config')","set-env GHOSTTY_SHELL_INTEGRATION_NO_SUDO 0","set-env SHELL fish","set-env SUDO_EDITOR nvim","set-env CGO_ENABLED true ","","# Update PATH list","set paths = [","    (path-join $E:HOME '.bun/bin')","    '/usr/bin/go/bin'","    (path-join $E:HOME 'go/bin')",>43
+|3,1,0,0,50,0,1756888468,"set-env EDITOR nvim","set-env VIMRC (path-join $E:XDG_CONFIG_HOME 'nvim/')","set-env GHOSTTYRC (path-join $E:XDG_CONFIG_HOME 'ghostty/config')","set-env GHOSTTY_SHELL_INTEGRATION_NO_SUDO 0","set-env SHELL fish","set-env SUDO_EDITOR nvim","set-env CGO_ENABLED true ","","# Update PATH list","set paths = [","    (path-join $E:HOME '.bun/bin')","    '/usr/bin/go/bin'","    (path-join $E:HOME 'go/bin')",>43
+|<"    (path-join $E:HOME '.x-cmd.root/bin')","    (path-join $E:HOME 'go/pkg/mod/github.com/spf13/cobra@v1.9.1/')","    ...$paths","]","","# Key Bindings","use edit","edit:insert:binding[alt-a] = { put 'ai'; enter } ","edit:insert:binding[alt-e] = { put 'nvim'; enter } ","edit:insert:binding[alt-t] = { put 'btop'; enter } ","edit:insert:binding[alt-o] = { put 'obsidian &'; enter } ","edit:insert:binding[alt-h] = { put \"invoke_bash 'x --help'\"; enter } ",>54
+|<"edit:insert:binding[ctrl-n] = { put 'navi'; enter } ","edit:insert:binding[alt-space] = { put 'spf'; enter } ","edit:insert:binding[alt-f] = { put 'fzf'; enter } ","","# Functions and Aliases","fn invoke_bash {|@args| bash -ci $@args } ","fn wk { cd ~/workspace/ }","fn cron {|@args| command crontab $@args }","fn rc { cd ~/sources/ }","fn xx { exit 0 }","fn vig { nvim $E:GHOSTTYRC }","fn ai { ollama run qwen2.5-coder:1.5b }","fn vif { nvim ~/.config/fish/config.fish }",>41
+|<"fn vicron { nvim ~/.config/.routines/ }","fn manx { invoke_bash 'x --help' } ","fn lsx {|@args| invoke_bash 'x ls '$@args } [cite: 2]","fn to {|@args| touch $@args }","fn so { source ~/.elvish/rc.elv }","fn vin { nvim $E:VIMRC }","fn rm {|@args| command rm -rfv $@args }","fn see {|@args| viu $@args }","fn git {|@args| x git $@args }","fn obsidian { command obsidian --disable-gpu & }","fn ls {|@args| nu -c 'ls --threads=true '$@args }","fn lsp {|@args| invoke_bash 'x path '$@args }"
+"1	CHAR	0
+	set-env EDITOR nvim
+	set-env VIMRC (path-join $E:XDG_CONFIG_HOME 'nvim/')
+	set-env GHOSTTYRC (path-join $E:XDG_CONFIG_HOME 'ghostty/config')
+	set-env GHOSTTY_SHELL_INTEGRATION_NO_SUDO 0
+	set-env SHELL fish
+	set-env SUDO_EDITOR nvim
+	set-env CGO_ENABLED true 
+	
+	# Update PATH list
+	set paths = [
+	    (path-join $E:HOME '.bun/bin')
+	    '/usr/bin/go/bin'
+	    (path-join $E:HOME 'go/bin')
+	    (path-join $E:HOME '.x-cmd.root/bin')
+	    (path-join $E:HOME 'go/pkg/mod/github.com/spf13/cobra@v1.9.1/')
+	    ...$paths
+	]
+	
+	# Key Bindings
+	use edit
+	edit:insert:binding[alt-a] = { put 'ai'; enter } 
+	edit:insert:binding[alt-e] = { put 'nvim'; enter } 
+	edit:insert:binding[alt-t] = { put 'btop'; enter } 
+	edit:insert:binding[alt-o] = { put 'obsidian &'; enter } 
+	edit:insert:binding[alt-h] = { put "invoke_bash 'x --help'"; enter } 
+	edit:insert:binding[ctrl-n] = { put 'navi'; enter } 
+	edit:insert:binding[alt-space] = { put 'spf'; enter } 
+	edit:insert:binding[alt-f] = { put 'fzf'; enter } 
+	
+	# Functions and Aliases
+	fn invoke_bash {|@args| bash -ci $@args } 
+	fn wk { cd ~/workspace/ }
+	fn cron {|@args| command crontab $@args }
+	fn rc { cd ~/sources/ }
+	fn xx { exit 0 }
+	fn vig { nvim $E:GHOSTTYRC }
+	fn ai { ollama run qwen2.5-coder:1.5b }
+	fn vif { nvim ~/.config/fish/config.fish }
+	fn vicron { nvim ~/.config/.routines/ }
+	fn manx { invoke_bash 'x --help' } 
+	fn lsx {|@args| invoke_bash 'x ls '$@args } [cite: 2]
+	fn to {|@args| touch $@args }
+	fn so { source ~/.elvish/rc.elv }
+	fn vin { nvim $E:VIMRC }
+	fn rm {|@args| command rm -rfv $@args }
+	fn see {|@args| viu $@args }
+	fn git {|@args| x git $@args }
+	fn obsidian { command obsidian --disable-gpu & }
+	fn ls {|@args| nu -c 'ls --threads=true '$@args }
+	fn lsp {|@args| invoke_bash 'x path '$@args }
+|3,0,1,0,50,0,1755173728,"set-env EDITOR nvim","set-env VIMRC (path-join $E:XDG_CONFIG_HOME 'nvim/')","set-env GHOSTTYRC (path-join $E:XDG_CONFIG_HOME 'ghostty/config')","set-env GHOSTTY_SHELL_INTEGRATION_NO_SUDO 0","set-env SHELL fish","set-env SUDO_EDITOR nvim","set-env CGO_ENABLED true ","","# Update PATH list","set paths = [","    (path-join $E:HOME '.bun/bin')","    '/usr/bin/go/bin'","    (path-join $E:HOME 'go/bin')",>43
 |<"    (path-join $E:HOME '.x-cmd.root/bin')","    (path-join $E:HOME 'go/pkg/mod/github.com/spf13/cobra@v1.9.1/')","    ...$paths","]","","# Key Bindings","use edit","edit:insert:binding[alt-a] = { put 'ai'; enter } ","edit:insert:binding[alt-e] = { put 'nvim'; enter } ","edit:insert:binding[alt-t] = { put 'btop'; enter } ","edit:insert:binding[alt-o] = { put 'obsidian &'; enter } ","edit:insert:binding[alt-h] = { put \"invoke_bash 'x --help'\"; enter } ",>54
 |<"edit:insert:binding[ctrl-n] = { put 'navi'; enter } ","edit:insert:binding[alt-space] = { put 'spf'; enter } ","edit:insert:binding[alt-f] = { put 'fzf'; enter } ","","# Functions and Aliases","fn invoke_bash {|@args| bash -ci $@args } ","fn wk { cd ~/workspace/ }","fn cron {|@args| command crontab $@args }","fn rc { cd ~/sources/ }","fn xx { exit 0 }","fn vig { nvim $E:GHOSTTYRC }","fn ai { ollama run qwen2.5-coder:1.5b }","fn vif { nvim ~/.config/fish/config.fish }",>41
 |<"fn vicron { nvim ~/.config/.routines/ }","fn manx { invoke_bash 'x --help' } ","fn lsx {|@args| invoke_bash 'x ls '$@args } [cite: 2]","fn to {|@args| touch $@args }","fn so { source ~/.elvish/rc.elv }","fn vin { nvim $E:VIMRC }","fn rm {|@args| command rm -rfv $@args }","fn see {|@args| viu $@args }","fn git {|@args| x git $@args }","fn obsidian { command obsidian --disable-gpu & }","fn ls {|@args| nu -c 'ls --threads=true '$@args }","fn lsp {|@args| invoke_bash 'x path '$@args }"
 
 # File marks:
-'0  1  0  ~/.config/nushell/config.nu
-|4,48,1,0,1755181182,"~/.config/nushell/config.nu"
-'1  83  29  ~/.config/elvish/rc.elv
-|4,49,83,29,1755173825,"~/.config/elvish/rc.elv"
+'0  12  0  ~/.config
+|4,48,12,0,1756888500,"~/.config"
+'1  1  0  ~/.config/nushell/config.nu
+|4,49,1,0,1755181182,"~/.config/nushell/config.nu"
 '2  83  29  ~/.config/elvish/rc.elv
-|4,50,83,29,1755173798,"~/.config/elvish/rc.elv"
-'3  84  0  ~/.config/elvish/rc.elv
-|4,51,84,0,1755173739,"~/.config/elvish/rc.elv"
-'4  1  0  ~/.config/elvish/rc.elv
-|4,52,1,0,1755173739,"~/.config/elvish/rc.elv"
-'5  84  0  ~/.config/elvish/rc.elv
-|4,53,84,0,1755173739,"~/.config/elvish/rc.elv"
-'6  1  0  ~/.config/elvish/rc.elv
-|4,54,1,0,1755173739,"~/.config/elvish/rc.elv"
-'7  1  0  ~/d.md
-|4,55,1,0,1755072489,"~/d.md"
-'8  1  0  ~/workspace/lzf/ir
-|4,56,1,0,1754724830,"~/workspace/lzf/ir"
-'9  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,57,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
+|4,50,83,29,1755173825,"~/.config/elvish/rc.elv"
+'3  83  29  ~/.config/elvish/rc.elv
+|4,51,83,29,1755173798,"~/.config/elvish/rc.elv"
+'4  84  0  ~/.config/elvish/rc.elv
+|4,52,84,0,1755173739,"~/.config/elvish/rc.elv"
+'5  1  0  ~/.config/elvish/rc.elv
+|4,53,1,0,1755173739,"~/.config/elvish/rc.elv"
+'6  84  0  ~/.config/elvish/rc.elv
+|4,54,84,0,1755173739,"~/.config/elvish/rc.elv"
+'7  1  0  ~/.config/elvish/rc.elv
+|4,55,1,0,1755173739,"~/.config/elvish/rc.elv"
+'8  1  0  ~/d.md
+|4,56,1,0,1755072489,"~/d.md"
+'9  1  0  ~/workspace/lzf/ir
+|4,57,1,0,1754724830,"~/workspace/lzf/ir"
 
 # Jumplist (newest first):
+-'  12  0  ~/.config
+|4,39,12,0,1756888500,"~/.config"
+-'  1  0  ~/.config/nushell/config.nu
+|4,39,1,0,1755181182,"~/.config/nushell/config.nu"
 -'  1  0  ~/.config/nushell/config.nu
 |4,39,1,0,1755181182,"~/.config/nushell/config.nu"
 -'  83  29  ~/.config/elvish/rc.elv
@@ -121,6 +187,14 @@
 -'  83  29  ~/.config/elvish/rc.elv
 |4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
 -'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
 |4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
 -'  83  29  ~/.config/elvish/rc.elv
 |4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
@@ -132,6 +206,22 @@
 |4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
 -'  84  0  ~/.config/elvish/rc.elv
 |4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
+-'  84  0  ~/.config/elvish/rc.elv
+|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
+-'  84  0  ~/.config/elvish/rc.elv
+|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
+-'  84  0  ~/.config/elvish/rc.elv
+|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
+-'  84  0  ~/.config/elvish/rc.elv
+|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
+-'  1  0  ~/.config/elvish/rc.elv
+|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
+-'  1  0  ~/.config/elvish/rc.elv
+|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
+-'  1  0  ~/.config/elvish/rc.elv
+|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
+-'  1  0  ~/.config/elvish/rc.elv
+|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
 -'  1  0  ~/.config/elvish/rc.elv
 |4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
 -'  1  0  ~/.config/elvish/rc.elv
@@ -172,6 +262,38 @@
 |4,39,1,0,1755072489,"~/d.md"
 -'  1  0  ~/d.md
 |4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
+-'  1  0  ~/d.md
+|4,39,1,0,1755072489,"~/d.md"
 -'  1  0  ~/workspace/lzf/ir
 |4,39,1,0,1754724830,"~/workspace/lzf/ir"
 -'  1  0  ~/workspace/lzf/ir
@@ -236,84 +358,22 @@
 |4,39,1,0,1754724830,"~/workspace/lzf/ir"
 -'  1  0  ~/workspace/lzf/ir
 |4,39,1,0,1754724830,"~/workspace/lzf/ir"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
--'  256  25  /usr/share/vim/vim90/doc/uganda.txt
-|4,39,256,25,1754305134,"/usr/share/vim/vim90/doc/uganda.txt"
+-'  1  0  ~/workspace/lzf/ir
+|4,39,1,0,1754724830,"~/workspace/lzf/ir"
+-'  1  0  ~/workspace/lzf/ir
+|4,39,1,0,1754724830,"~/workspace/lzf/ir"
+-'  1  0  ~/workspace/lzf/ir
+|4,39,1,0,1754724830,"~/workspace/lzf/ir"
+-'  1  0  ~/workspace/lzf/ir
+|4,39,1,0,1754724830,"~/workspace/lzf/ir"
+-'  1  0  ~/workspace/lzf/ir
+|4,39,1,0,1754724830,"~/workspace/lzf/ir"
+-'  1  0  ~/workspace/lzf/ir
+|4,39,1,0,1754724830,"~/workspace/lzf/ir"
+-'  1  0  ~/workspace/lzf/ir
+|4,39,1,0,1754724830,"~/workspace/lzf/ir"
+-'  1  0  ~/workspace/lzf/ir
+|4,39,1,0,1754724830,"~/workspace/lzf/ir"
 
 # History of marks within files (newest to oldest):
 

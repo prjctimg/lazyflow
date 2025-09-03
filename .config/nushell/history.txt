@@ -747,3 +747,14 @@ nvim $nu.config-path
 exit
 xx
 exit
+xonsh
+exit
+caat
+nvim $nu.config-path
+exit
+nvim $nu.config-path
+exit
+nvim $nu.config-path
+exit
+zsh
+xonsh

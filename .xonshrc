@@ -25,16 +25,6 @@ def _create_handler(text):
         event.current_buffer.validate_and_handle()
     return _handler
 
-bindings = XSH.bindings
-bindings.add_handler(Keys.Escape, 'a', filter=True)(_create_handler("ai")) 
-bindings.add_handler(Keys.Escape, 'e', filter=True)(_create_handler("nvim")) 
-bindings.add_handler(Keys.Escape, 't', filter=True)(_create_handler("btop")) 
-bindings.add_handler(Keys.Escape, 'o', filter=True)(_create_handler("obsidian &")) 
-bindings.add_handler(Keys.Escape, 'h', filter=True)(_create_handler("invoke_bash 'x --help'")) 
-bindings.add_handler(Keys.ControlN, filter=True)(_create_handler("navi")) 
-bindings.add_handler(Keys.Escape, ' ', filter=True)(_create_handler("spf")) 
-bindings.add_handler(Keys.Escape, 'f', filter=True)(_create_handler("fzf")) 
-
 # Aliases and Functions
 aliases['wk'] = 'cd ~/workspace/'
 aliases['rc'] = 'cd ~/sources/'
@@ -87,7 +77,8 @@ def mtrx(args):
 
 # Initialization
 execx($(starship init xonsh))
-execx($(thefuck --alias))
+# execx($(thefuck --alias))
+exec($(carapace _carapace xonsh))
 
 
 
