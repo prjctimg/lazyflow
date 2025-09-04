@@ -52,9 +52,160 @@ end
 function vif
     nvim $HOME/.config/fish/config.fish
 
+
+
+
 end
 
 
+function time_greeting
+
+    set hour (date +"%H")
+
+    if test $hour -ge 5 -a $hour -lt 12
+        set greeting "Good morning, Dean ☀️"
+    else if test $hour -ge 12 -a $hour -lt 17
+        set greeting "Good afternoon, Dean 🌤️"
+    else if test $hour -ge 17 -a $hour -lt 21
+        set greeting "Good evening, Dean 🌆"
+    else
+        set greeting "Burning the midnight oil, Dean? 🌙"
+    end
+
+    echo $greeting
+
+
+end
+
+
+
+function daily_verse
+    # Define the path to your verses JSON file.
+    # You might want to adjust this path based on where you saved the file.
+    set -l verse_file "$HOME/.config/fish/verses.json"
+
+    set -l day_of_month (date +%d | sed 's/^0*//' | string trim)
+    set -l index (math "$day_of_month" - 1)
+    # Ensure the file exists before trying to read it
+    if not test -f "$verse_file"
+        echo "Welcome to fish! (Verses file not found: $verse_file)"
+        return
+    end
+
+    set -l current_hour (date +%H)
+
+
+    # Use 'jq' to read the JSON file, get the current day of the month,
+    # and use it as an index to pick a verse.
+
+    # Use 'jq' to extract the verse at the calculated index
+    set -l verse (jq -r ".[$index % length].text" < "$verse_file")
+
+    set -l verse_ref (jq -r ".[$index % length].reference" < "$verse_file")
+    # Print the verse, with some styling
+
+    if test $current_hour -lt 12
+        echo $(random choice "🌅" "🌄" "🍃" )
+    else if test $current_hour -lt 18
+        echo $(random choice "🏙️" "🏖️" )
+    else
+        echo $(random choice "🌆" "🌇"  "🌃" "🌉" "")
+    end
+    # printf (set_color green)"Day $day_of_month\n\n"(set_color normal)
+
+    echo ""
+    printf (set_color cyan)"%s"(set_color normal)"\n" "$verse"
+
+    echo ""
+    printf (set_color blue)"%s"(set_color normal)"\n" "📜 $verse_ref"
+
+end
+
+function dashboard_greeter_nvim
+
+    set options square alpha crunchbang-mini six fade suckless
+    while true
+        set choice $options[(math (random) % (count $options) + 1)]
+        colorscript -e $choice | pv -qL 80 | lolcat -at
+        sleep 6
+        clear
+    end
+end
+
+function fish_greeting
+
+
+    daily_verse | pv -qL 60
+
+
+
+end
+function dashboard_footer_nvim
+
+    # just loop any ascii art for any number of seconds
+    # In this case I'm using 5
+    # Can even add more variations to the loop
+    # to make it look more dynamic
+    while true
+        fish_greeting | pv -qL 10
+
+        sleep 10
+
+        clear
+
+        fish_greeting | pv -qL 10 | lolcat -at
+
+        sleep 10
+        clear
+    end
+end
+
+function run
+
+
+    if not set -q argv[1]
+
+        echo "Usage $0 <file>"
+        exit 1
+    end
+
+    set file $argv[1]
+    set ext (echo $file | awk -F '.' '{print $NF}')
+
+
+    if test "$ext" = "$file"
+        if not test -x $file
+            echo "File not executable."
+            chmod +x $file
+            echo "File made executable. Running it..."
+            $file
+        else
+            $file
+
+        end
+    else
+        switch $ext
+            case lua
+
+                lua $file
+
+            case js ts mts mjs cjs
+
+
+                bun $file
+
+
+            case sh
+                bash $file
+            case go
+
+                go run $argv $file
+            case zig
+
+                zig run $file
+        end
+    end
+end
 function vicron
     nvim $HOME/.config/.routines/
 end

@@ -7,9 +7,24 @@ $EDITOR = 'nvim'
 $VIMRC = f"{os.environ.get('XDG_CONFIG_HOME', os.path.expanduser('~/.config'))}/nvim/"
 $GHOSTTYRC = f"{os.environ.get('XDG_CONFIG_HOME', os.path.expanduser('~/.config'))}/ghostty/config"
 $GHOSTTY_SHELL_INTEGRATION_NO_SUDO = '0'
-# $SHELL = 'fish'
+$SHELL = 'fish'
 $SUDO_EDITOR = 'nvim'
 $CGO_ENABLED = 'true' 
+
+# Update PATH
+$PATH.add(os.path.expanduser('~/.bun/bin'), front=True)
+$PATH.add('/usr/bin/go/bin', front=True)
+$PATH.add(os.path.expanduser('~/go/bin'), front=True)
+$PATH.add(os.path.expanduser('~/.x-cmd.root/bin'), front=True)
+# $PATH.add(os.path.expanduser('~/go/pkg/mod/github.com/spf13/cobra@v1.9.1/'), front=True)
+
+# Key Bindings
+def _create_handler(text):
+    def _handler(event):
+        event.current_buffer.text = text
+        event.current_buffer.validate_and_handle()
+    return _handler
+
 # Aliases and Functions
 aliases['wk'] = 'cd ~/workspace/'
 aliases['rc'] = 'cd ~/sources/'
@@ -57,6 +72,8 @@ def agg(args):
 def man(args):
     $(command man @(args)) | vi -R
 
+def mtrx(args):
+    tr -c "[:digit:]" " " < /dev/urandom | dd cbs=$COLUMNS conv=unblock | GREP_COLOR="1;32" grep --color "[^ ]"
 
 # Initialization
 execx($(starship init xonsh))
