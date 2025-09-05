@@ -33,7 +33,14 @@ local hour = tonumber(os.date("%H")) -- Get the current hour (0-23)
 local light_theme = "tokyonight-day"
 local dark_theme = "tokyonight"
 local is_day = hour >= 6 and hour < 17
+local emoji = ""
+if hour >= 6 and hour < 18 then
+  emoji = "🌇  " -- Sun emoji for daytime
+else
+  emoji = "🌃  " -- Moon emoji for nighttime
+end
 
+vim.opt.winbar = "%=%m %f  " .. emoji
 if is_day then
   vim.cmd.colorscheme(light_theme)
   Snacks.notifier("Lights on 🌞", "info", {
