@@ -92,26 +92,27 @@ map(
   },
   "<A-f>",
   function()
-    Snacks.picker.explorer({
-      auto_close = true,
+    local files = require("mini.files")
+    return files.close() or files.open()
+  end
+)
+map(
+  {
 
-      matcher = {
-
-        fuzzy = true,
-      },
-      title = "Files in this space 🗃️ ",
-
-      layout = {
-        preview = true,
-      },
+    "i",
+    "n",
+    "v",
+    "t",
+    "x",
+    "o",
+  },
+  "<A-s>",
+  function()
+    Snacks.picker.lsp_symbols({
+      title = "Symbols in this space are...🌃",
     })
   end
 )
-map({ "i", "n" }, "<A-s>", function()
-  Snacks.picker.lsp_symbols({
-    title = "Symbols in this space are...🌃",
-  })
-end)
 
 map({ "i", "n" }, "<A-S>", function()
   Snacks.picker.lsp_workspace_symbols({

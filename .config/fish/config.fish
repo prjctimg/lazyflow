@@ -136,7 +136,8 @@ function fish_greeting
 
 
     daily_verse | pv -qL 60
-
+    sleep 3s
+    clear
 
 
 end

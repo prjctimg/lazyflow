@@ -15,7 +15,7 @@ $
 
 # Command Line History (newest to oldest):
 :q
-|2,0,1756899411,,"q"
+|2,0,1756988639,,"q"
 :qa
 |2,0,1756888500,,"qa"
 :!nvim
@@ -155,27 +155,29 @@ $
 
 # File marks:
 '0  1  0  ~/.xonshrc
-|4,48,1,0,1756899411,"~/.xonshrc"
+|4,48,1,0,1756988639,"~/.xonshrc"
 '1  1  0  ~/.xonshrc
-|4,49,1,0,1756899082,"~/.xonshrc"
-'2  12  0  ~/.config
-|4,50,12,0,1756888500,"~/.config"
-'3  1  0  ~/.config/nushell/config.nu
-|4,51,1,0,1755181182,"~/.config/nushell/config.nu"
-'4  83  29  ~/.config/elvish/rc.elv
-|4,52,83,29,1755173825,"~/.config/elvish/rc.elv"
-'5  83  29  ~/.config/elvish/rc.elv
-|4,53,83,29,1755173798,"~/.config/elvish/rc.elv"
-'6  84  0  ~/.config/elvish/rc.elv
-|4,54,84,0,1755173739,"~/.config/elvish/rc.elv"
-'7  1  0  ~/.config/elvish/rc.elv
-|4,55,1,0,1755173739,"~/.config/elvish/rc.elv"
+|4,49,1,0,1756899411,"~/.xonshrc"
+'2  1  0  ~/.xonshrc
+|4,50,1,0,1756899082,"~/.xonshrc"
+'3  1  0  ~/.xonshrc
+|4,51,1,0,1756899082,"~/.xonshrc"
+'4  12  0  ~/.config
+|4,52,12,0,1756888500,"~/.config"
+'5  1  0  ~/.config/nushell/config.nu
+|4,53,1,0,1755181182,"~/.config/nushell/config.nu"
+'6  83  29  ~/.config/elvish/rc.elv
+|4,54,83,29,1755173825,"~/.config/elvish/rc.elv"
+'7  83  29  ~/.config/elvish/rc.elv
+|4,55,83,29,1755173798,"~/.config/elvish/rc.elv"
 '8  84  0  ~/.config/elvish/rc.elv
 |4,56,84,0,1755173739,"~/.config/elvish/rc.elv"
 '9  1  0  ~/.config/elvish/rc.elv
 |4,57,1,0,1755173739,"~/.config/elvish/rc.elv"
 
 # Jumplist (newest first):
+-'  1  0  ~/.xonshrc
+|4,39,1,0,1756988639,"~/.xonshrc"
 -'  1  0  ~/.xonshrc
 |4,39,1,0,1756899411,"~/.xonshrc"
 -'  1  0  ~/.xonshrc
@@ -188,6 +190,30 @@ $
 |4,39,12,0,1756888500,"~/.config"
 -'  12  0  ~/.config
 |4,39,12,0,1756888500,"~/.config"
+-'  12  0  ~/.config
+|4,39,12,0,1756888500,"~/.config"
+-'  12  0  ~/.config
+|4,39,12,0,1756888500,"~/.config"
+-'  12  0  ~/.config
+|4,39,12,0,1756888500,"~/.config"
+-'  12  0  ~/.config
+|4,39,12,0,1756888500,"~/.config"
+-'  1  0  ~/.config/nushell/config.nu
+|4,39,1,0,1755181182,"~/.config/nushell/config.nu"
+-'  1  0  ~/.config/nushell/config.nu
+|4,39,1,0,1755181182,"~/.config/nushell/config.nu"
+-'  1  0  ~/.config/nushell/config.nu
+|4,39,1,0,1755181182,"~/.config/nushell/config.nu"
+-'  1  0  ~/.config/nushell/config.nu
+|4,39,1,0,1755181182,"~/.config/nushell/config.nu"
+-'  1  0  ~/.config/nushell/config.nu
+|4,39,1,0,1755181182,"~/.config/nushell/config.nu"
+-'  1  0  ~/.config/nushell/config.nu
+|4,39,1,0,1755181182,"~/.config/nushell/config.nu"
+-'  1  0  ~/.config/nushell/config.nu
+|4,39,1,0,1755181182,"~/.config/nushell/config.nu"
+-'  1  0  ~/.config/nushell/config.nu
+|4,39,1,0,1755181182,"~/.config/nushell/config.nu"
 -'  1  0  ~/.config/nushell/config.nu
 |4,39,1,0,1755181182,"~/.config/nushell/config.nu"
 -'  1  0  ~/.config/nushell/config.nu
@@ -237,6 +263,66 @@ $
 -'  83  29  ~/.config/elvish/rc.elv
 |4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
 -'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173825,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
 |4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
 -'  83  29  ~/.config/elvish/rc.elv
 |4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
@@ -268,6 +354,10 @@ $
 |4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
 -'  83  29  ~/.config/elvish/rc.elv
 |4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
+-'  83  29  ~/.config/elvish/rc.elv
+|4,39,83,29,1755173798,"~/.config/elvish/rc.elv"
 -'  84  0  ~/.config/elvish/rc.elv
 |4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
 -'  84  0  ~/.config/elvish/rc.elv
@@ -286,101 +376,11 @@ $
 |4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
 -'  84  0  ~/.config/elvish/rc.elv
 |4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
--'  84  0  ~/.config/elvish/rc.elv
-|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
--'  84  0  ~/.config/elvish/rc.elv
-|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
--'  84  0  ~/.config/elvish/rc.elv
-|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
--'  84  0  ~/.config/elvish/rc.elv
-|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
--'  84  0  ~/.config/elvish/rc.elv
-|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
--'  84  0  ~/.config/elvish/rc.elv
-|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
--'  84  0  ~/.config/elvish/rc.elv
-|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
--'  84  0  ~/.config/elvish/rc.elv
-|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
--'  84  0  ~/.config/elvish/rc.elv
-|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
--'  84  0  ~/.config/elvish/rc.elv
-|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
--'  84  0  ~/.config/elvish/rc.elv
-|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
--'  84  0  ~/.config/elvish/rc.elv
-|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
--'  84  0  ~/.config/elvish/rc.elv
-|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
--'  84  0  ~/.config/elvish/rc.elv
-|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
--'  84  0  ~/.config/elvish/rc.elv
-|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
--'  84  0  ~/.config/elvish/rc.elv
-|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
--'  84  0  ~/.config/elvish/rc.elv
-|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
--'  84  0  ~/.config/elvish/rc.elv
-|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
--'  84  0  ~/.config/elvish/rc.elv
-|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
--'  84  0  ~/.config/elvish/rc.elv
-|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
--'  84  0  ~/.config/elvish/rc.elv
-|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
--'  84  0  ~/.config/elvish/rc.elv
-|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
--'  84  0  ~/.config/elvish/rc.elv
-|4,39,84,0,1755173772,"~/.config/elvish/rc.elv"
--'  1  0  ~/.config/elvish/rc.elv
-|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
--'  1  0  ~/.config/elvish/rc.elv
-|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
--'  1  0  ~/.config/elvish/rc.elv
-|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
--'  1  0  ~/.config/elvish/rc.elv
-|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
--'  1  0  ~/.config/elvish/rc.elv
-|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
--'  1  0  ~/.config/elvish/rc.elv
-|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
--'  1  0  ~/.config/elvish/rc.elv
-|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
--'  1  0  ~/.config/elvish/rc.elv
-|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
--'  1  0  ~/.config/elvish/rc.elv
-|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
--'  1  0  ~/.config/elvish/rc.elv
-|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
--'  1  0  ~/.config/elvish/rc.elv
-|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
--'  1  0  ~/.config/elvish/rc.elv
-|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
--'  1  0  ~/.config/elvish/rc.elv
-|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
--'  1  0  ~/.config/elvish/rc.elv
-|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
--'  1  0  ~/.config/elvish/rc.elv
-|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
--'  1  0  ~/.config/elvish/rc.elv
-|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
--'  1  0  ~/.config/elvish/rc.elv
-|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
--'  1  0  ~/.config/elvish/rc.elv
-|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
--'  1  0  ~/.config/elvish/rc.elv
-|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
--'  1  0  ~/.config/elvish/rc.elv
-|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
--'  1  0  ~/.config/elvish/rc.elv
-|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
--'  1  0  ~/.config/elvish/rc.elv
-|4,39,1,0,1755173739,"~/.config/elvish/rc.elv"
 
 # History of marks within files (newest to oldest):
 
 > ~/.xonshrc
-	*	1756899402	0
+	*	1756988636	0
 	"	1	0
 
 > ~/.config/nushell/config.nu

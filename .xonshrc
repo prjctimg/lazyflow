@@ -1,3 +1,4 @@
+
 import os
 from xonsh.built_ins import XSH
 from prompt_toolkit.keys import Keys
@@ -72,13 +73,58 @@ def agg(args):
 def man(args):
     $(command man @(args)) | vi -R
 
-def mtrx(args):
-    tr -c "[:digit:]" " " < /dev/urandom | dd cbs=$COLUMNS conv=unblock | GREP_COLOR="1;32" grep --color "[^ ]"
 
-# Initialization
+@events.on_ptk_create
+def custom_keybindings(bindings, **kw):
+    # Alt-a → ai
+    @bindings.add(Keys.Escape, 'a')
+    def _ai(event):
+        ai
+        event.cli.renderer.erase()
+
+    # Alt-e → nvim
+    @bindings.add(Keys.Escape, 'e')
+    def _nvim(event):
+        nvim
+        event.cli.renderer.erase()
+
+    # Alt-t → btop
+    @bindings.add(Keys.Escape, 't')
+    def _btop(event):
+        btop
+        event.cli.renderer.erase()
+
+    # Alt-o → obsidian &  (background)
+    @bindings.add(Keys.Escape, 'o')
+    def _obsidian(event):
+        obsidian &
+        event.cli.renderer.erase()
+
+    # Alt-h → invoke_bash 'x --help'
+    @bindings.add(Keys.Escape, 'h')
+    def _help(event):
+        invoke_bash('x --help')
+        event.cli.renderer.erase()
+
+    # Ctrl-N → navi
+    @bindings.add(Keys.ControlN)
+    def _navi(event):
+        navi
+        event.cli.renderer.erase()
+
+    # Alt-Space → spf
+    @bindings.add(Keys.Escape, ' ')
+    def _spf(event):
+        spf
+        event.cli.renderer.erase()
+
+    # Alt-f → fzf
+    @bindings.add(Keys.Escape, 'f')
+    def _fzf(event):
+        fzf
+        event.cli.renderer.erase()
+
 execx($(starship init xonsh))
 # execx($(thefuck --alias))
 exec($(carapace _carapace xonsh))
-
-
 

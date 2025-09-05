@@ -58,7 +58,11 @@ autocmd({ "BufRead", "BufNewFile" }, {
 autocmd({ "BufEnter" }, {
 
   pattern = { "*.js", "*.ts", "*.zig", "*.jsx", "*.tsx", "*.lua", "*.fish", "*.sh", "*.css", "*.css" },
-  command = ":Outline!",
+  callback = function()
+    vim.defer_fn(function()
+      vim.cmd("Outline")
+    end, 6000)
+  end,
   -- callback = function(args)
   --   local outline = require("outline")
   --   local is_open = outline:toggle_outline()
@@ -75,29 +79,3 @@ autocmd({ "BufEnter" }, {
   -- end,
   once = true,
 })
-
--- autocmd({ "BufEnter", "CursorHold" }, {
---   group = my_autocmds_group,
---
---   callback = (function()
---     local last_pos = nil
---     return function()
---       local pos = vim.api.nvim_win_get_cursor(0)
---       if last_pos and last_pos[1] == pos[1] and last_pos[2] == pos[2] then
---         return
---       end
---       last_pos = { pos[1], pos[2] }
---       vim.defer_fn(function()
---         vim.lsp.buf.hover({
---
---           focusable = false,
---           focus = false,
---         })
---       end, 300000)
---     end
---   end)(),
---
---   desc = "Show symbol help signature on CursorHold",
---   -- vim.diagnostic.show_line_diagnostics()
---   pattern = { "*.lua", "*.ts", "*.js", "*.go", "*.zig" },
--- })

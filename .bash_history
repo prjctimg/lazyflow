@@ -252,3 +252,27 @@ xx
 exit
 elvish 
 exit
+# Initialize carapace completions for xonsh
+mkdir -p ~/.config/carapace
+carapace --list | while read shell; do     carapace $shell completion > ~/.config/carapace/completions.$shell; done
+echo  $0
+carapace --list | while read shell; do     carapace $shell completion > ~/.config/carapace/completions.$shell; done
+echo  $?
+nvim x.sh
+chmod +x x.sh; bash -c x.sh 
+chmod +x x.sh; bash x.sh 
+zsh
+exit
+sudo mkdir -p /etc/apt/keyrings
+wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
+sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+sudo apt update
+sudo apt install -y eza
+eza
+"deb http://packages.azlux.fr/debian/ testing main"
+sudo wget -O /usr/share/keyrings/azlux-archive-keyring.gpg  https://azlux.fr/repo.gpg
+sudo apt install broot
+apt update
+xx
+exit
