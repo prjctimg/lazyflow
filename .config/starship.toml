@@ -53,15 +53,15 @@ tag_symbol = '🔖 '
 style = 'bold cyan'
 format = '([$all_status$ahead_behind]($style) )'
 conflicted = '🏳${count}|'
-ahead = '🏎💨 ${count}|'
-behind = '😰 ${count}|'
-diverged = '😵'
+ahead = '🚀 ${count}|'
+behind = '🐌 ${count}|'
+diverged = '💔'
 up_to_date = '✓ '
-untracked = '🤷 ${count}|'
-stashed = '📦 ${count}|'
+untracked = '🧐 ${count}|'
+stashed = '🗄️ ${count}|'
 modified = '📝 ${count}|'
 staged = '[++\($count\)](green)'
-renamed = '👅 ${count}|'
+renamed = '🥸 ${count}|'
 deleted = '🗑 ${count}|'
 
 
@@ -74,7 +74,7 @@ format = """\n[$symbol$shlvl]($style) """
 
 [shell]
 disabled = false
-
+fish_indicator = "xsh"
 
 [battery]
 disabled = false
@@ -120,13 +120,13 @@ truncation_length = 1
 [directory.substitutions]
 'workspace' = '🧪'
 'huetiful' = '🎨'
-'math' = '🧮'
+'.math' = '🧮'
 'sources' = '🔬'
 'me' = '📓'
-# 'tumblr.nvim' = '👥'
-'zig-agg' = '📺'
-'lzf' = '🦥'
-'.nvim' = '📜'
+'cast2gif' = '📺'
+'lazyflow' = '🦥'
+'.nvim' = '🧑‍💻'
+'.lua' = '🎑'
 [c]
 symbol = " 🧮"
 format = ' [$symbol $name $version]($style)'
