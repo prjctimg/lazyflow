@@ -113,7 +113,7 @@ symbol = " 🐊"
 style = "bold cyan"
 
 [directory]
-format = """ [🗺️ in $path]($style)[$read_only]($read_only_style) \n"""
+format = """ [now in $path]($style)[$read_only]($read_only_style) \n"""
 home_symbol = "🏚️"
 truncation_length = 1
 
