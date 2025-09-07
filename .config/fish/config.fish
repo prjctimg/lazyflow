@@ -240,7 +240,7 @@ end
 
 function rm
 
-    command rm -rfv $argv
+    command sudo rm -rfv $argv
 
 end
 

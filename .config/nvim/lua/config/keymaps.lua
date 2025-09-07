@@ -90,7 +90,7 @@ map(
     "x",
     "o",
   },
-  "<A-f>",
+  "<A-e>",
   function()
     local files = require("mini.files")
     return files.close() or files.open()

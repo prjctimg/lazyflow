@@ -55,8 +55,8 @@ format = '([$all_status$ahead_behind]($style) )'
 conflicted = '🏳${count}|'
 ahead = '🚀 ${count}|'
 behind = '🐌 ${count}|'
-diverged = '💔'
-up_to_date = '😇'
+diverged = '⚮'
+up_to_date = '☊'
 untracked = '🧐 ${count}|'
 stashed = '🗄️ ${count}|'
 modified = '📝 ${count}|'
@@ -88,8 +88,8 @@ style = 'bold green'
 
 
 [character]
-# error_symbol = '[●](bold red)'
-error_symbol = '[⮾](bold red)'
+error_symbol = '[●](bold red)'
+# error_symbol = '[⮾](bold red)'
 
 [bun]
 format = '[$symbol](bold green)'
@@ -122,7 +122,8 @@ truncation_length = 1
 'huetiful' = '🎨'
 '.math' = '🧮'
 'sources' = '🔬'
-'me' = '📓'
+'blog' = '📓'
+'shells' = '🐚'
 'cast2gif' = '📺'
 'lazyflow' = '🦥'
 '.nvim' = '🧑‍💻'
@@ -140,6 +141,10 @@ format = ' [$symbol @$version]($style)'
 
 [nodejs]
 format = '[$symbol]($style)'
+[lua]
+format = '[$symbol]($style)'
+symbol = "🌖 "
+
 
 [sudo]
 disabled = true

@@ -24,7 +24,12 @@ require("lualine").setup({
     },
   },
 })
-
+require("which-key").setup({
+  preset = "helix",
+  wo = {
+    winblend = 80, -- value between 0-100 0 for fully opaque and 100 for fully transparent
+  },
+})
 vim.g.markdown_fenced_languages = {
   "ts=typescript",
 }
