@@ -52,28 +52,23 @@ end
 function vif
     nvim $HOME/.config/fish/config.fish
 
-
-
-
 end
 
 
 function time_greeting
-
     set hour (date +"%H")
-
+    set name $(whoami)
     if test $hour -ge 5 -a $hour -lt 12
-        set greeting "Good morning, Dean ☀️"
+        set greeting "Good morning, $name ☀️"
     else if test $hour -ge 12 -a $hour -lt 17
-        set greeting "Good afternoon, Dean 🌤️"
+        set greeting "Good afternoon, $name🌤️"
     else if test $hour -ge 17 -a $hour -lt 21
-        set greeting "Good evening, Dean 🌆"
+        set greeting "Good evening, $name🌆"
     else
-        set greeting "Burning the midnight oil, Dean? 🌙"
+        set greeting "Burning the midnight oil, $name? 🌙"
     end
 
-    echo $greeting
-
+    printf (set_color blue)"%s"(set_color normal)"\n" "$greeting"
 
 end
 
@@ -136,10 +131,12 @@ function fish_greeting
 
 
     daily_verse | pv -qL 60
-    sleep 3s
+    sleep 2s
     clear
+    time_greeting | pv -qL 60
 
-
+    sleep 2s
+    clear
 end
 function dashboard_footer_nvim
 
@@ -292,12 +289,6 @@ end
 
 
 function man
-    # local err = command man $argv 2>-neq ""
-
-    # if $err
-    #     echo "No man page for" $argv
-    #     exit 1
-    # end
 
     command man $argv | vi -R
 
@@ -323,9 +314,7 @@ function mtrx
 end
 
 function chrome
-
     garcon-url-handler --client $argv
-
 end
 
 
@@ -370,31 +359,21 @@ function rm-pkg
 
 end
 
-
-
-
-
 function top
     btop $argv
 
 end
 
-# Variables
-
 set -x EDITOR nvim
 set -x VIMRC "$XDG_CONFIG_HOME/nvim/"
-set -x GHOSTTYRC "$XDG_CONFIG_HOME/ghostty/config"
-set -x GOPATH /usr/local/share/go
+set -x TERMRC "$XDG_CONFIG_HOME/ghostty/config"
+set -x GOPATH $(which go)
 set -x GHOSTTY_SHELL_INTEGRATION_NO_SUDO 0
 set -x PATH /home/prjctimg/.bun/bin:/usr/bin/go/bin:/usr/local/sbin:/usr/local/bin:/usr/local/games:/usr/sbin:/usr/bin:/usr/games:/sbin:/bin:/home/prjctimg/go/bin:/usr/bin/go/bin:/usr/local/sbin:/usr/local/bin:/usr/local/games:/usr/sbin:/usr/bin:/usr/games:/sbin:/bin:/home/prjctimg/.x-cmd.root/bin:/home/prjctimg/.rbenv/bin:/home/prjctimg/.deno/bin
-
 set -x SHELL fish
-set -x SUDO_EDITOR nvim
+set -x SUDO_EDITOR $(which nvim)
 set -x CGO_ENABLED true
+set -x OPENSSL_DIR $(which openssl)
 
-set -x OPENSSL_DIR /usr/bin/openssl
 eval (starship init fish)
-
-
-
 thefuck --alias | source
