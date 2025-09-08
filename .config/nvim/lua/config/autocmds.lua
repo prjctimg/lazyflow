@@ -58,24 +58,6 @@ autocmd({ "BufRead", "BufNewFile" }, {
 autocmd({ "BufEnter" }, {
 
   pattern = { "*.js", "*.ts", "*.zig", "*.jsx", "*.tsx", "*.lua", "*.fish", "*.sh", "*.css", "*.css" },
-  callback = function()
-    vim.defer_fn(function()
-      vim.cmd("Outline")
-    end, 6000)
-  end,
-  -- callback = function(args)
-  --   local outline = require("outline")
-  --   local is_open = outline:toggle_outline()
-  --   local has_provider = outline:has_provider()
-  --   if not has_provider then
-  --     outline:close_outline()
-  --   end
-  --   if is_open then
-  --     outline.follow_cursor({
-  --       focus_outline = false,
-  --
-  --     })
-  --   end
-  -- end,
+  command = ":Outline!",
   once = true,
 })
