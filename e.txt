@@ -1,0 +1,17 @@
+              Wait until the first byte has been transferred before showing any progress information or calculating any ETAs.  Useful if the program you are
+              piping  to or from requires extra information before it starts, eg piping data into gpg(1) or mcrypt(1) which require a passphrase before data
+              can be processed.
+
+              Wait until the first byte has been transferred before showing any progress information or calculating any ETAs.  Useful if the program you are
+              piping  to or from requires extra information before it starts, eg piping data into gpg(1) or mcrypt(1) which require a passphrase before data
+              can be processed.
+
+              Wait until the first byte has been transferred before showing any progress information or calculating any ETAs.  Useful if the program you are
+              piping  to or from requires extra information before it starts, eg piping data into gpg(1) or mcrypt(1) which require a passphrase before data
+              can be processed.
+
+              Wait until the first byte has been transferred before showing any progress information or calculating any ETAs.  Useful if the program you are
+              piping  to or from requires extra information before it starts, eg piping data into gpg(1) or mcrypt(1) which require a passphrase before data
+              can be processed.
+
+

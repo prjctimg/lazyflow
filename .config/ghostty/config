@@ -2,7 +2,7 @@
 
 title = ディーン・タリサイ🌠
 command = fish 
-fullscreen = true
+# fullscreen = true
 confirm-close-surface = false
 shell-integration = fish
 clipboard-read = allow
