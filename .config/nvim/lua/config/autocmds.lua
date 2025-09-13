@@ -54,21 +54,3 @@ autocmd({ "BufRead", "BufNewFile" }, {
     end
   end,
 })
-
-autocmd({ "BufEnter" }, {
-
-  pattern = { "*.js", "*.ts", "*.zig", "*.jsx", "*.tsx", "*.lua", "*.fish", "*.sh", "*.css", "*.css" },
-  callback = function(args)
-    local outline = require("outline")
-
-    local is_active = outline.is_open()
-    if is_active then
-      outline.refresh_outline()
-      return
-    end
-    return outline.open({
-      focus_outline = false,
-    })
-  end,
-  once = true,
-})
