@@ -188,7 +188,11 @@ map({ "i", "n", "v", "x", "o", "t" }, "<A-->", function()
       style = "fancy",
     })
 end)
+map({ "i", "n", "v", "x", "o", "t" }, "<A-n>", function()
+  local neogit = require("neogit")
 
+  return neogit.open() or neogit.close()
+end)
 map({ "i", "n", "v", "x", "o", "t" }, "<A-=>", function()
   return vim.cmd.colorscheme("tokyonight-day")
     and Snacks.notifier("Lights on 🌞", "info", {
@@ -205,6 +209,7 @@ map({ "i", "n" }, "<A-g>", function()
   else
     grug.open({
       transient = true,
+
       prefills = {
         filesFilter = ext and ext ~= "" and "*." .. ext or nil,
       },
@@ -252,9 +257,9 @@ map({ "i", "n", "v" }, "<A-b>", function()
   })
 end)
 
--- map({ "i", "n" }, "<A-k>", function()
---   Snacks.picker.keymaps()
--- end)
+map({ "i", "n" }, "<A-k>", function()
+  Snacks.picker.keymaps()
+end)
 map({ "i", "n" }, "<A-j>", function()
   Snacks.picker.jumps({
     title = "Jump back to... 🦘",
