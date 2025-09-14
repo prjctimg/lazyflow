@@ -42,22 +42,19 @@ map({ "i", "n", "t", "x", "o" }, "<A-k>", function()
   return vim.lsp.buf.hover() or vim.lsp.buf.signature_help()
 end)
 
-map({ "i", "n", "v", "x", "o", "t" }, "<A-n>", function()
-  local neogit = require("neogit")
-
-  return neogit.open() or neogit.close()
-end)
 map({ "i", "n", "t", "x", "o" }, "<A-q>", function()
   require("persistence").select()
 end)
 map({ "i", "n", "v", "t", "x", "o" }, "<A-.>", function()
+  -- require("telescope").extensions.pomodori.timers()
+
   Snacks.input.input({
     prompt = "What needs to be done ?",
 
     icon = "🚧",
   }, function(task)
     if task == nil then
-      return
+      task = "🧑‍💻"
     end
     Snacks.picker.select({ 15, 30, 45, 60, 90, 120 }, {
       prompt = "How long will it take ? ⏲️",
@@ -93,28 +90,29 @@ map(
     "x",
     "o",
   },
-  "<A-f>",
+  "<A-e>",
   function()
-    Snacks.picker.explorer({
-      auto_close = true,
+    local files = require("mini.files")
+    return files.close() or files.open()
+  end
+)
+map(
+  {
 
-      matcher = {
-
-        fuzzy = true,
-      },
-      title = "Files in this space 🗃️ ",
-
-      layout = {
-        preview = true,
-      },
+    "i",
+    "n",
+    "v",
+    "t",
+    "x",
+    "o",
+  },
+  "<A-s>",
+  function()
+    Snacks.picker.lsp_symbols({
+      title = "Symbols in this space are...🌃",
     })
   end
 )
-map({ "i", "n" }, "<A-s>", function()
-  Snacks.picker.lsp_symbols({
-    title = "Symbols in this space are...🌃",
-  })
-end)
 
 map({ "i", "n" }, "<A-S>", function()
   Snacks.picker.lsp_workspace_symbols({
@@ -190,7 +188,11 @@ map({ "i", "n", "v", "x", "o", "t" }, "<A-->", function()
       style = "fancy",
     })
 end)
+map({ "i", "n", "v", "x", "o", "t" }, "<A-n>", function()
+  local neogit = require("neogit")
 
+  return neogit.open() or neogit.close()
+end)
 map({ "i", "n", "v", "x", "o", "t" }, "<A-=>", function()
   return vim.cmd.colorscheme("tokyonight-day")
     and Snacks.notifier("Lights on 🌞", "info", {
@@ -207,6 +209,7 @@ map({ "i", "n" }, "<A-g>", function()
   else
     grug.open({
       transient = true,
+
       prefills = {
         filesFilter = ext and ext ~= "" and "*." .. ext or nil,
       },
@@ -265,6 +268,6 @@ end)
 map({ "i", "n", "t", "x", "o", "v" }, "<A-`>", function()
   require("telescope").load_extension("emoji").emoji()
 end)
-map({ "i", "n", "v" }, "<A-z>", function()
-  return Snacks.dashboard.open()
+map({ "i", "n" }, "<A-z>", function()
+  Snacks.dashboard.open()
 end)

@@ -1,7 +1,3 @@
 vim.o.shell = "fish"
 vim.o.mouse = "a"
 vim.o.clipboard = "unnamedplus"
-
-vim.g.markdown_fenced_languages = {
-  "ts=typescript",
-}

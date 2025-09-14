@@ -11,7 +11,6 @@ return {
           position = "float",
           minimal = false,
           backdrop = 50,
-          cmd = "zsh",
           footer_pos = "center",
           footer = "💡 Press C-/ to quit/toggle",
           title_pos = "center",
